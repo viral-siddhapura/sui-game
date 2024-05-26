@@ -1,8 +1,18 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
 
 function App() {
-
-  return <>WE ARE GOING TO BUILD SUI FRENZ GAME - Team 100xSUI</>;
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
 
 export default App;
