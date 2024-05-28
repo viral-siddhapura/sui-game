@@ -17,4 +17,25 @@
     background-image: url('https://example.com/your-border-image.jpg');
   }
   
+  @keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes emptyBar {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
+  
+  .progress-bar {
+    transition: width 0s;
+  }
+  
+  .fill-animation {
+    animation: fillBar 1s forwards;
+  }
+  
+  .empty-animation {
+    animation: emptyBar 1s forwards;
+  }
   

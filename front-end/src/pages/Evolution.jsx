@@ -6,9 +6,10 @@ import mystic from "../../public/mysticcard.png";
 import map1 from "../../public/bgmap4.png";
 
 const Evolution = () => {
-  const [food, setFood] = useState(100);
+  const [food, setFood] = useState(1000);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [battleDeck, setBattleDeck] = useState([null, null, null]);
+  const [isLevelUp, setIsLevelUp] = useState(false);
 
   const characters = [
     {
@@ -66,16 +67,21 @@ const Evolution = () => {
         selectedCharacter.foodProgress += foodToConsume;
 
         if (selectedCharacter.foodProgress >= selectedCharacter.foodRequired) {
-          selectedCharacter.hp += 10;
-          selectedCharacter.speed += 2;
-          selectedCharacter.power += 3;
-          selectedCharacter.stamina += 4;
-          selectedCharacter.level += 1;
-          selectedCharacter.foodProgress = 0; // Reset food progress after leveling up
-          selectedCharacter.foodRequired += 10; // Increase food required for next level
+          setIsLevelUp(true);
+          setTimeout(() => {
+            selectedCharacter.hp += 10;
+            selectedCharacter.speed += 2;
+            selectedCharacter.power += 3;
+            selectedCharacter.stamina += 4;
+            selectedCharacter.level += 1;
+            selectedCharacter.foodProgress = 0; // Reset food progress after leveling up
+            selectedCharacter.foodRequired += 10; // Increase food required for next level
+            setIsLevelUp(false);
+            setSelectedCharacter({ ...selectedCharacter });
+          }, 3000); // Match the duration of the animation
+        } else {
+          setSelectedCharacter({ ...selectedCharacter });
         }
-
-        setSelectedCharacter({ ...selectedCharacter });
       }
     }
   };
@@ -93,14 +99,14 @@ const Evolution = () => {
 
   return (
     <div
-      className="flex flex-col h-screen bg-yellow-600"
+      className="flex flex-col bg-yellow-600 h-[100%]"
       style={{
         backgroundImage: `url(${map1})`,
-        // backgroundSize: "contain",
+        backgroundSize: "cover",
         // backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         // width: "100%",
-        // height: "100%",
+        height: "100vh",
       }}
     >
       <div className="fixed w-full flex justify-between p-4 bg-gray-700 h-[60px] text-white z-10">
@@ -112,13 +118,13 @@ const Evolution = () => {
         </div>
       </div>
       <div className="bg-blue-00 flex ">
-        <div className="flex flex-row w-[100%] h-[91.13vh] mt-16">
+        <div className="flex flex-row w-[100%] h-[91.13vh] mt-16 ">
           <div className="w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar">
             {characters.map((character) => (
-              <div className="relative">
+              <div className="">
                 <div
                   key={character.id}
-                  className="p-0 mb-[20px] flex flex-col  items-center bg-red-00 image-border rounded hover:cursor-pointer"
+                  className="p-0 mb-[20px] flex flex-col  items-center bg-red-00 image-border rounded hover:cursor-pointer relative"
                   onClick={() => setSelectedCharacter(character)}
                 >
                   <img
@@ -126,78 +132,83 @@ const Evolution = () => {
                     alt={character.name}
                     className="w-full h-auto rounded-3xl"
                   />
-                  <div>
-                    <p className=" font-bold text-3xl mt-[-110px]">
-                      {character.name}
-                    </p>
+                  <div className="absolute bottom-6">
+                    <p className=" font-bold text-3xl ">{character.name}</p>
+
+                    <p className="font-bold">Level: {character.level}</p>
                   </div>
-                  <p className="mt-[-50px]">Level: {character.level}</p>
                   {/* <img className='absolute mt-[-385px] w-[900px] ' src= {border1} alt="" />  */}
                 </div>
               </div>
             ))}
           </div>
-          <div className=" mt-4 flex flex-col ml-[5%] w-[50%] h-[87vh]  rounded-3xl bg-yellow-00 items-center  ">
+          <div className=" mt-4 flex flex-col ml-[5%] w-[50%] h-[90vh]  rounded-3xl bg-yellow-00 items-center  ">
             {selectedCharacter && (
-              <div className="w-[100%] h-[100%] p-[20px] flex flex-col items-center bg-cyan-00 overflow-auto rounded-3xl no-scrollbar shadow-lg">
-                <img
-                  src={selectedCharacter.image}
-                  alt={selectedCharacter.name}
-                  className=" rounded-3xl"
-                />
-                <h2 className="font-bold text-3xl mt-[-180px]">
-                  {selectedCharacter.name}
-                </h2>
-                <p className="mt-[-7px]">Level: {selectedCharacter.level}</p>
-                <div className=" flex flex-col items-center">
-                  <div className="flex">
-                    <p
-                      className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
-                      style={{
-                        backgroundImage:
-                          "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
-                      }}
-                    >
-                      HP: {selectedCharacter.hp}
-                    </p>
-                    <p
-                      className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
-                      style={{
-                        backgroundImage:
-                          "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
-                      }}
-                    >
-                      Speed: {selectedCharacter.speed}
-                    </p>
-                  </div>
-                  <div className="flex">
-                    <p
-                      className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
-                      style={{
-                        backgroundImage:
-                          "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
-                      }}
-                    >
-                      Power: {selectedCharacter.power}
-                    </p>
-                    <p
-                      className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
-                      style={{
-                        backgroundImage:
-                          "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
-                      }}
-                    >
-                      Stamina: {selectedCharacter.stamina}
-                    </p>
+              <div className="w-[100%] h-[100%] p-[20px] flex flex-col items-center bg-cyan-00 overflow-auto rounded-3xl no-scrollbar shadow-lg ">
+                <div className="h-[600px] relative">
+                  <img
+                    src={selectedCharacter.image}
+                    alt={selectedCharacter.name}
+                    className=" rounded-3xl h-[100%]"
+                  />
+                  <div className="absolute bottom-0 text-center flex flex-col items-center w-[100%] scale-[0.90]">
+                    <h2 className="font-bold text-3xl">
+                      {selectedCharacter.name}
+                    </h2>
+                    <p className="">Level: {selectedCharacter.level}</p>
+                    <div className=" flex flex-col items-center">
+                      <div className="flex">
+                        <p
+                          className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
+                          style={{
+                            backgroundImage:
+                              "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
+                          }}
+                        >
+                          HP: {selectedCharacter.hp}
+                        </p>
+                        <p
+                          className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
+                          style={{
+                            backgroundImage:
+                              "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
+                          }}
+                        >
+                          Speed: {selectedCharacter.speed}
+                        </p>
+                      </div>
+                      <div className="flex">
+                        <p
+                          className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
+                          style={{
+                            backgroundImage:
+                              "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
+                          }}
+                        >
+                          Power: {selectedCharacter.power}
+                        </p>
+                        <p
+                          className="w-[200px] m-[5px] p-2 text-center font-bold text-yellow-100 rounded-xl border-4 border-yellow-100"
+                          style={{
+                            backgroundImage:
+                              "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
+                          }}
+                        >
+                          Stamina: {selectedCharacter.stamina}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <p className="mt-4 text-yellow-200">
                   Food required for next level: {selectedCharacter.foodRequired}
                 </p>
-                <div className="w-[300px] h-[100px] bg-red-500 border-yellow-700 border-[1px] rounded-full  overflow-auto">
+                <div className="w-[300px] h-[10px] border-yellow-700 border-[1px] rounded-full overflow-hidden">
                   <div
-                    className="bg-red-400 h-4 rounded-full transition-all duration-300"
+                    className={`bg-red-400 h-4 rounded-full ${
+                      isLevelUp ? "fill-animation" : "progress-bar"
+                    }`}
                     style={{
                       width: `${
                         (selectedCharacter.foodProgress /
@@ -205,8 +216,20 @@ const Evolution = () => {
                         100
                       }%`,
                     }}
+                    onAnimationEnd={() => {
+                      if (isLevelUp) {
+                        setIsLevelUp(false);
+                      }
+                    }}
                   ></div>
+                  {isLevelUp && (
+                    <div
+                      className="bg-red-400 h-4 rounded-full empty-animation"
+                      style={{ width: "100%" }}
+                    ></div>
+                  )}
                 </div>
+
                 <div className="mt-4">
                   <button
                     onClick={handleFeed}
