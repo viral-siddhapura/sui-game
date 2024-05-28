@@ -1,0 +1,41 @@
+/* styles.css */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+  }
+
+
+.image-border {
+    border: 10px solid transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    background-image: url('https://example.com/your-border-image.jpg');
+  }
+  
+  @keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+  
+  @keyframes emptyBar {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
+  
+  .progress-bar {
+    transition: width 0s;
+  }
+  
+  .fill-animation {
+    animation: fillBar 1s forwards;
+  }
+  
+  .empty-animation {
+    animation: emptyBar 1s forwards;
+  }
+  
