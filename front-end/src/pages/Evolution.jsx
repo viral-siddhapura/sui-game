@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css";
-import border1 from "../../public/junglecard.png";
+import jungle from "../../public/junglecard1.png";
+import aqua from "../../public/aquacard.png";
+import mystic from "../../public/mysticcard.png";
 import map1 from "../../public/bgmap4.png";
 
 const Evolution = () => {
@@ -17,7 +19,7 @@ const Evolution = () => {
       speed: 10,
       power: 15,
       stamina: 20,
-      image: border1,
+      image: jungle,
       foodRequired: 20,
       foodProgress: 0,
     },
@@ -29,7 +31,7 @@ const Evolution = () => {
       speed: 12,
       power: 20,
       stamina: 25,
-      image: border1,
+      image: aqua,
       foodRequired: 20,
       foodProgress: 0,
     },
@@ -41,7 +43,7 @@ const Evolution = () => {
       speed: 12,
       power: 20,
       stamina: 25,
-      image: border1,
+      image: mystic,
       foodRequired: 20,
       foodProgress: 0,
     },
