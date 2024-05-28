@@ -6,9 +6,11 @@ const Login = () => {
   const [jwt, setJwt] = useState('');
   const [userSalt, setUserSalt] = useState('');
 
-  const responseMessage = (response) => {
+  const responseMessage = async (response) => {
     console.log('Google login response: ', response);
-    const suiAdd = getSuiAddress(jwt, userSalt);
+    console.log('salt: ', userSalt);
+    setJwt(response.credential);
+    const suiAdd = await getSuiAddress(response.credential, userSalt);
     console.log('sui Add : ', suiAdd);
   };
   const errorMessage = (error) => {
