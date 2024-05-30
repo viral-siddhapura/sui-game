@@ -7,9 +7,17 @@ import {
   jwtToAddress,
 } from '@mysten/zklogin';
 import axios from 'axios';
+import { stringToBigInt } from './misc';
+import { toBigIntBE } from 'bigint-buffer';
+import { fromB64 } from '@mysten/bcs';
+import { Buffer } from 'buffer';
 
-const FULLNODE_URL = 'https://fullnode.devnet.sui.io';
+const FULLNODE_URL = 'https://fullnode.mainnet.sui.io';
 const suiClient = new SuiClient({ url: FULLNODE_URL });
+// const obj1 = suiClient.getOwnedObjects(
+//   '0xb2ffd33c92aa567ea5fbf535dd8fd64f173a92395704195156ce813400b2a410'
+// );
+// console.log('obj 1: ', obj1);
 const { epoch, epochDurationMs, epochStartTimestampMs } =
   await suiClient.getLatestSuiSystemState();
 
@@ -27,11 +35,27 @@ const extendedEphemeralPublicKey = getExtendedEphemeralPublicKey(
 );
 
 export const getSuiAddress = async (jwt, userSalt) => {
-  const zkLoginUserAddress = jwtToAddress(jwt, userSalt);
-  const zkp = await axios.post(import.meta.env.VITE_PROVER_URL, {
-    jwt,
-    extendedEphemeralPublicKey,
-    maxEpoch,
+  const zkLoginUserAddress = jwtToAddress(jwt, stringToBigInt(userSalt));
+  const ephemeralPublicKeyArray = fromB64(extendedEphemeralPublicKey);
+  console.log(
+    'post data fro zkp - ',
+    JSON.stringify({
+      jwt,
+      extendedEphemeralPublicKey: toBigIntBE(
+        Buffer.from(ephemeralPublicKeyArray)
+      ).toString(),
+      maxEpoch,
+      jwtRandomness: randomness,
+      salt: userSalt,
+      keyClaimName: 'sub',
+    })
+  );
+  const zkp = await axios.post('https://prover-dev.mystenlabs.com/v1', {
+    jwt: jwt,
+    extendedEphemeralPublicKey: toBigIntBE(
+      Buffer.from(ephemeralPublicKeyArray)
+    ).toString(),
+    maxEpoch: maxEpoch,
     jwtRandomness: randomness,
     salt: userSalt,
     keyClaimName: 'sub',
