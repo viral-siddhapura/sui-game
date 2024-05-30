@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchSuiFrensNfts } from '../utils/sui-api';
+import { Link } from 'react-router-dom';
 
 const NFTs = () => {
   const [data, setData] = useState(null);
@@ -7,8 +8,7 @@ const NFTs = () => {
   const [error, setError] = useState(null);
   const [NFTs, SetNFTs] = useState([]);
 
-  const walletAddress =
-    '0x5be5fe79e9449a61d7ee04c553787657cef20717ab4fcc1c377d251b7bcb4d03';
+  const walletAddress = localStorage.getItem('wallet_addr');
   const bullshark_nft_type = import.meta.env.VITE_APP_BULLSHARK_NFT_TYPE;
   const capy_nft_type = import.meta.env.VITE_APP_CAPY_NFT_TYPE;
 
@@ -49,24 +49,65 @@ const NFTs = () => {
     }
   };
 
+  useEffect(() => {
+    makeRpcCall();
+  }, []);
+
   return (
-    <div className='w-full h-full bg-black text-white'>
-      <button onClick={makeRpcCall}>Fetch NFTs</button>
-      {loading && <p>Loading...</p>}
+    <div className='w-full h-screen bg-black text-white'>
+      <h2 className='text-center font-mono mb-6'>
+        Your Current NFT Collection
+      </h2>
+      {loading && <p className='text-center'>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      <div className='flex justify-center items-center gap-7 flex-wrap'>
-        {NFTs.map((item) => {
-          return (
-            <div key={item.data.objectId} className='border-4 rounded-2xl border-yellow-600 cursor-pointer bg-yellow-400 hover:bg-yellow-600'>
-              <img
-                src={item.data.display.data.image_url}
-                width={150}
-                alt='NFT image'
-                className='m-7'
-              />
-            </div>
-          );
-        })}
+      <div className='flex justify-center items-center gap-7 flex-wrap my-7'>
+        {NFTs.length
+          ? NFTs.map((item) => {
+              return (
+                <div
+                  key={item.data.objectId}
+                  className='border-4 rounded-2xl border-yellow-600 cursor-pointer bg-yellow-400 hover:bg-yellow-600'
+                >
+                  <img
+                    src={item.data.display.data.image_url}
+                    width={150}
+                    alt='NFT image'
+                    className='m-7'
+                  />
+                </div>
+              );
+            })
+          : !loading && (
+              <div>
+                You don't have any SuiFrens NFT in your wallet. Kindly purchase
+                them from{' '}
+                <a
+                  href='https://suifrens.com'
+                  type='_blank'
+                  className='text-blue-600 underline'
+                >
+                  suifrens.com
+                </a>{' '}
+                to continue to game!
+              </div>
+            )}
+      </div>
+      <div className='text-center my-6 flex justify-center gap-10'>
+        <button
+          className='bg-yellow-500 rounded-xl px-4 py-2 text-md hover:bg-yellow-600'
+          onClick={makeRpcCall}
+        >
+          Refresh Wallet
+        </button>
+        {NFTs.length && !loading ? (
+          <Link to='/accessories'>
+            <button className='bg-orange-500 rounded-xl px-4 py-2 text-md hover:bg-orange-600'>
+              Continue
+            </button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

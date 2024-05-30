@@ -3,11 +3,15 @@
 @tailwind utilities;
 @import './styles.css';
 
-
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 h2 {
-    font-size: 2.3rem;
+  font-size: 2.3rem;
+}
+
+.glass {
+  background: linear-gradient(rgba(255, 217, 0, 0.257), rgba(255, 217, 0, 0.842), right);
+  backdrop-filter: blur(10px);
 }
