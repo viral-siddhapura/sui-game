@@ -99,7 +99,7 @@ const Evolution = () => {
 
   return (
     <div
-      className="flex flex-col bg-yellow-600 h-[100%]"
+      className="flex flex-col bg-yellow-600 h-[100vh]"
       style={{
         backgroundImage: `url(${map1})`,
         backgroundSize: "cover",
@@ -121,7 +121,7 @@ const Evolution = () => {
         <div className="flex flex-row w-[100%] h-[91.13vh] mt-16 ">
           <div className="w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar">
             {characters.map((character) => (
-              <div className="">
+              <div>
                 <div
                   key={character.id}
                   className="p-0 mb-[20px] flex flex-col  items-center bg-red-00 image-border rounded hover:cursor-pointer relative"
@@ -142,10 +142,10 @@ const Evolution = () => {
               </div>
             ))}
           </div>
-          <div className=" mt-4 flex flex-col ml-[5%] w-[50%] h-[90vh]  rounded-3xl bg-yellow-00 items-center  ">
+          <div className=" mt-4 flex flex-col ml-[5%] w-[50%] h-[88vh]  rounded-3xl bg-yellow-00 items-center  ">
             {selectedCharacter && (
-              <div className="w-[100%] h-[100%] p-[20px] flex flex-col items-center bg-cyan-00 overflow-auto rounded-3xl no-scrollbar shadow-lg ">
-                <div className="h-[600px] relative">
+              <div className="w-[100%] h-[100vh] p-[20px] flex flex-col items-center bg-cyan-00 overflow-scroll rounded-3xl no-scrollbar shadow-lg ">
+                <div className="h-[800px] scale-[.9] relative">
                   <img
                     src={selectedCharacter.image}
                     alt={selectedCharacter.name}
