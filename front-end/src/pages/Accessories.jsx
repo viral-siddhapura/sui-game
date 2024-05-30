@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import bear from "/bear-default.png";
 import shark from "/bull-shark-default.png";
 import theme1 from "/junglecard.png"; // Import theme images as required
