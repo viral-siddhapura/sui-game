@@ -29,6 +29,7 @@ const Login = () => {
         walletAddress: suiAdd,
       });
       console.log('Zklogin : ', resp.data);
+      localStorage.setItem('user_id', resp.data._id);
       navigate('/nfts');
     } catch (error) {
       console.log(error);
@@ -50,6 +51,7 @@ const Login = () => {
           walletAddress: walletAddress.address,
         });
         console.log('Sui wallet login : ', resp.data);
+        localStorage.setItem('user_id', resp.data._id);
         navigate('/nfts');
       } catch (error) {
         console.log(error);

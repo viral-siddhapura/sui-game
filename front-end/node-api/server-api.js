@@ -18,3 +18,19 @@ export const updateWalletAddress = async (address, user_id) => {
   );
   return res;
 };
+
+export const createCard = async (cardDetails) => {
+  const res = await axios.post(
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/`,
+    cardDetails
+  );
+  return res;
+};
+
+export const getCardCollection = async () => {
+  const res = await axios.post(
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/`,
+    { user_id: localStorage.getItem('user_id') }
+  );
+  return res;
+};

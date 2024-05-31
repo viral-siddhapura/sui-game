@@ -59,7 +59,7 @@ const NFTs = () => {
 
   return (
     <div className='w-full h-screen bg-black text-white'>
-      <h2 className='text-center font-mono mb-6'>
+      <h2 className='text-center font-[handlee] text-5xl pt-3 mb-6'>
         Your Current NFT Collection
       </h2>
       {loading && <p className='text-center'>Loading...</p>}
@@ -83,7 +83,7 @@ const NFTs = () => {
             })
           : !loading && (
               <div>
-                You don't have any SuiFrens NFT in your wallet. Kindly purchase
+                You don&apos;t have any SuiFrens NFT in your wallet. Kindly purchase
                 them from{' '}
                 <a
                   href='https://suifrens.com'
@@ -104,7 +104,7 @@ const NFTs = () => {
           Refresh Wallet
         </button>
         {NFTs.length && !loading ? (
-          <Link to='/accessories'>
+          <Link to={`/accessories?nfts=${JSON.stringify(NFTs)}`}>
             <button className='bg-orange-500 rounded-xl px-4 py-2 text-md hover:bg-orange-600'>
               Continue
             </button>
