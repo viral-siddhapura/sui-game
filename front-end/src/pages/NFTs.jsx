@@ -8,8 +8,9 @@ const NFTs = () => {
   const [error, setError] = useState(null);
   const [NFTs, SetNFTs] = useState([]);
 
-  const walletAddress = localStorage.getItem('wallet_addr');
-  // 0xb2ffd33c92aa567ea5fbf535dd8fd64f173a92395704195156ce813400b2a410;
+  // const walletAddress = localStorage.getItem('wallet_addr');
+  const walletAddress =
+    '0x5be5fe79e9449a61d7ee04c553787657cef20717ab4fcc1c377d251b7bcb4d03';
   const bullshark_nft_type = import.meta.env.VITE_APP_BULLSHARK_NFT_TYPE;
   const capy_nft_type = import.meta.env.VITE_APP_CAPY_NFT_TYPE;
 
