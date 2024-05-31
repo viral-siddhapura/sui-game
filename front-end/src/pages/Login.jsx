@@ -62,6 +62,7 @@ const Login = () => {
         <p>You can&apos;t afford to forget the salt!</p>
         <div className='w-80 text-center mx-auto py-6 flex justify-center'>
           <GoogleLogin
+          
             onSuccess={responseMessage}
             onError={errorMessage}
             nonce={nonce}
