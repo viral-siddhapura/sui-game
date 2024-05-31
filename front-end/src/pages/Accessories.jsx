@@ -33,13 +33,7 @@ function Accessories() {
       } else {
         theme = 'mystic';
       }
-      console.log({
-        name: 'Suifren-' + theme,
-        theme,
-        user: localStorage.getItem('user_id'),
-        cardImgUrl: selectedTheme,
-        baseImgUrl: selectedImage,
-      });
+
       await createCard({
         name:
           'Suifren-' +
@@ -48,8 +42,8 @@ function Accessories() {
           Math.round(Math.random() * 10000).toString(),
         theme,
         user: localStorage.getItem('user_id'),
-        cardImgUrl: selectedImage,
-        baseImgUrl: selectedTheme,
+        cardImgUrl: selectedTheme,
+        baseImgUrl: selectedImage,
       });
       alert('Theme applied and card saved!');
     } catch (error) {
@@ -86,21 +80,21 @@ function Accessories() {
   const ThemeDetails = () => {
     if (selectedTheme === theme1) {
       return (
-        <p className="text-3xl font-[handlee]">
+        <p className='text-3xl font-[handlee]'>
+          <p>This is Jungle theme!</p>
           <p>
-            This is Jungle theme!
+            <Link to={'/evolution'}>
+              <button className='bg-green-600 text-white rounded-md px-2 py-1 hover:bg-green-700 my-4'>
+                Evolve your cards
+              </button>
+            </Link>
           </p>
-          <Link to={'/evolution'}>
-            <button className='bg-green-600 text-white rounded-md px-2 py-1 hover:bg-green-700 my-4'>
-              Evolve your cards
-            </button>
-          </Link>
         </p>
       );
     } else if (selectedTheme === theme2) {
       return (
-        <p className="text-3xl font-[handlee]">
-          This is Mystic theme!
+        <p className='text-3xl font-[handlee]'>
+          <p>This is Mystic theme!</p>
           <Link to={'/evolution'}>
             <button className='bg-green-600 text-white rounded-md px-2 py-1 hover:bg-green-700 my-4'>
               Evolve your cards
@@ -110,8 +104,8 @@ function Accessories() {
       );
     } else if (selectedTheme === theme3) {
       return (
-        <p className="text-3xl font-[handlee]">
-          This is Aqua theme!
+        <p className='text-3xl font-[handlee]'>
+          <p>This is Aqua theme!</p>
           <Link to={'/evolution'}>
             <button className='bg-green-600 text-white rounded-md px-2 py-1 hover:bg-green-700 my-4'>
               Evolve your cards
@@ -122,7 +116,9 @@ function Accessories() {
     } else {
       return (
         <p className='font-semibold text-2xl ml-[-20px]'>
-          <p className="text-xl font-[handlee]">Welcome to the Dress-up and Theme Page! </p>
+          <p className='text-xl font-[handlee]'>
+            Welcome to the Dress-up and Theme Page!{' '}
+          </p>
           <Link to={'/evolution'}>
             <button className='bg-green-600 text-white rounded-md px-2 py-1 hover:bg-green-700 my-4'>
               Evolve your cards

@@ -28,9 +28,17 @@ export const createCard = async (cardDetails) => {
 };
 
 export const getCardCollection = async () => {
-  const res = await axios.post(
-    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/`,
-    { user_id: localStorage.getItem('user_id') }
+  const res = await axios.get(
+    `${
+      import.meta.env.VITE_APP_SERVER_URL
+    }/api/cards?user_id=${localStorage.getItem('user_id')}`
+  );
+  return res;
+};
+
+export const feedCards = async (cardDetails) => {
+  const res = await axios.put(
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/${cardDetails.id}`, cardDetails
   );
   return res;
 };
