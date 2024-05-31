@@ -6,6 +6,7 @@ import MapPage from './pages/MapPage';
 import Accessories from './pages/Accessories';
 import NFTs from './pages/NFTs';
 import BattleGround from './pages/BattleGround';
+import MarketPlace from './pages/MarketPlace';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/evolution' element={<Evolution />} />
           <Route path='/mappage' element={<MapPage />} />
+          <Route path='/market' element={<MarketPlace />} />
           <Route path='/accessories' element={<Accessories />} />
           <Route path='/battleground' element={<BattleGround />} />
 

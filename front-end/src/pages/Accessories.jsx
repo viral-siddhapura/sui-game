@@ -27,21 +27,20 @@ function Accessories() {
     <div className=" rounded-2xl shadow-md bg-slate-700 ml-[50px] w-[240px] text-white border-8 border-yellow-100 border-double h-[350px] flex items-center justify-center">
       <p>First Select a Card</p>
     </div>
-    
   );
 
   const Card = ({ src, name, level, width, height }) => (
     <div>
-    <div
-      className={`w-[${width}] h-[${height}] ml-[20px] mt-[0px]  flex flex-col items-center relative scale-[0.8] cursor-pointer`}
-      onClick={() => handleImageClick(src)}
-    >
-      <img src={src} alt="Bear" className="cursor-pointer rounded-2xl" />
-      <div className="absolute text-center w-full text-black font-bold bottom-8">
-        <h3>{name}</h3>
-        <p>Level {level}</p>
+      <div
+        className={`w-[${width}] h-[${height}] ml-[20px] mt-[0px]  flex flex-col items-center relative scale-[0.8] cursor-pointer`}
+        onClick={() => handleImageClick(src)}
+      >
+        <img src={src} alt="Bear" className="cursor-pointer rounded-2xl" />
+        <div className="absolute text-center w-full text-black font-bold bottom-8">
+          <h3>{name}</h3>
+          <p>Level {level}</p>
+        </div>
       </div>
-    </div>
     </div>
   );
 
@@ -53,7 +52,11 @@ function Accessories() {
     } else if (selectedTheme === theme3) {
       return <p>This is Theme 3. It represents the aqua.</p>;
     } else {
-      return <p className="font-semibold text-2xl ml-[-20px]">Welcome to the Dress-up Page </p>; // If no theme is selected, don't display details
+      return (
+        <p className="font-semibold text-2xl ml-[-20px]">
+          Welcome to the Dress-up Page{" "}
+        </p>
+      ); // If no theme is selected, don't display details
     }
   };
 
@@ -62,13 +65,6 @@ function Accessories() {
       <div className="acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh]   text-white ">
         <div className="w-[100%] m-0 h-[60px] p-0 z-50 bg-slate-700 text-center ">
           <h5>NAVBAR</h5>
-          {/* <Card
-                src={bear}
-                name={"Capybara"}
-                level={"1"}
-                width={"150px"}
-                height={"209px"}
-              /> */}
         </div>
         <div>
           <h1 className="text-3xl ml-[55px] p-4 font-bold ">Current Cards:</h1>{" "}
@@ -161,7 +157,9 @@ function Accessories() {
                 height={"209px"}
               />
             </div>
-            <h1 className="text-3xl bg-green-00 font-medium ml-[65px] underline ">Preview:</h1>
+            <h1 className="text-3xl bg-green-00 font-medium ml-[65px] underline ">
+              Preview:
+            </h1>
             <div className="w-[100%] bg-red-00 h-[54vh] flex justify-between items-center">
               {selectedImage ? (
                 <div className="mt-[-30px]">
@@ -218,19 +216,18 @@ function Accessories() {
                 onClick={() => handleThemeSelect(theme3)}
               />
 
-<button
-              className={`mt-8 mb-4 px-4 py-2  rounded-md ${
-                selectedImage
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-300 cursor-not-allowed text-black"
-              }`}
-              disabled={!selectedImage}
-              onClick={applyTheme}
-            >
-              Apply Theme
-            </button>
+              <button
+                className={`mt-8 mb-4 px-4 py-2  rounded-md ${
+                  selectedImage
+                    ? "bg-green-600 text-white"
+                    : "bg-gray-300 cursor-not-allowed text-black"
+                }`}
+                disabled={!selectedImage}
+                onClick={applyTheme}
+              >
+                Apply Theme
+              </button>
             </div>
-
           </div>
         </div>
       </div>
