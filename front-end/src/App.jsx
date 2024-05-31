@@ -7,6 +7,7 @@ import Accessories from './pages/Accessories';
 import NFTs from './pages/NFTs';
 import BattleGround from './pages/BattleGround';
 import LandingPage2 from './pages/LandingPage2';
+import LandingPage from './pages/LandingPage';
 import MarketPlace from './pages/MarketPlace';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LandingPage2 />} />
+          <Route path='/' element={<LandingPage />} />
           <Route path='/nfts' element={<NFTs />} />
           <Route path='/login' element={<Login />} />
           <Route path='/evolution' element={<Evolution />} />
