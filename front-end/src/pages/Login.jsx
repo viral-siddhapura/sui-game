@@ -11,7 +11,7 @@ const Login = () => {
   const [nonce, setNonce] = useState('');
 
   const responseMessage = async (response) => {
-    console.log('Google login response: ', jwtDecode(response.credential));
+    console.log('Google login response: ', response);
     console.log('salt: ', userSalt);
     localStorage.setItem('salt', userSalt);
     setJwt(response.credential);
@@ -40,7 +40,7 @@ const Login = () => {
             </span>
           </span>
         </h1>
-        <p className='font-bold text-xl font-[handlee] my-4'>
+        <p className='text-xl font-[handlee] my-4'>
           Let's dive into world of SuiFrens!
         </p>
         <div className='w-80 text-center flex justify-center  mx-auto py-8'>
