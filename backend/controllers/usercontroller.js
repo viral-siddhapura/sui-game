@@ -14,23 +14,43 @@ exports.getUsers = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   try {
-    const { name, email, imageUrl } = req.body;
-    let existingUser = await User.findOne({ email });
-    if (!existingUser) {
-      const user = new User({
-        name,
-        email,
-        imageUrl,
-      });
-      const newUser = await user.save();
-      res.status(201).json(newUser);
-    } else {
-      if (Date.now() - Number.parseInt(existingUser.lastLogin) > 86400000) {
-        existingUser.foodCoin += 100;
+    const { name, email, imageUrl, walletAddress } = req.body;
+    if (email) {
+      // zklogin approach
+      let existingUser = await User.findOne({ email });
+      if (!existingUser) {
+        const user = new User({
+          name,
+          email,
+          imageUrl,
+          walletAddress,
+        });
+        const newUser = await user.save();
+        res.status(201).json(newUser);
+      } else {
+        if (Date.now() - Number.parseInt(existingUser.lastLogin) > 86400000) {
+          existingUser.foodCoin += 100;
+        }
+        existingUser.lastLogin = Date.now();
+        await existingUser.save();
+        res.status(200).send(existingUser);
       }
-      existingUser.lastLogin = Date.now();
-      await existingUser.save();
-      res.status(200).send(existingUser);
+    } else {
+      const existingUser = await User.findOne({ walletAddress });
+      if (!existingUser) { // sui wallet login 
+        const user = new User({
+          walletAddress,
+        });
+        const newUser = await user.save();
+        res.status(201).json(newUser);
+      } else {
+        if (Date.now() - Number.parseInt(existingUser.lastLogin) > 86400000) {
+          existingUser.foodCoin += 100;
+        }
+        existingUser.lastLogin = Date.now();
+        await existingUser.save();
+        res.status(200).send(existingUser);
+      }
     }
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -39,9 +59,9 @@ exports.loginUser = async (req, res) => {
 
 exports.updateWalletAddress = async (req, res) => {
   try {
-    const { walletAddress, email } = req.body;
+    const { walletAddress, user_id } = req.body;
     const updatedUser = await User.findOneAndUpdate(
-      { email },
+      { _id: user_id },
       { walletAddress }
     );
     res.status(200).json(updatedUser);
