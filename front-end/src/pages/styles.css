@@ -100,3 +100,20 @@
   background-repeat: no-repeat;
   text-align: center;
 }
+
+
+/*  battleground css  */
+
+.battleground{
+  background-image: url("../../public//bgmap4.png");
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background-size: cover;
+}
+
+.card-area{
+  background-image: url("https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg");
+  background-size: cover;
+}
+
+
