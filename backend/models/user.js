@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  imageUrl: { type: String, required: true },
+  name: { type: String },
+  email: { type: String },
+  imageUrl: { type: String },
   walletAddress: { type: String },
   gameCoin: { type: Number, required: true, default: 100 },
   foodCoin: { type: Number, required: true, default: 200 },

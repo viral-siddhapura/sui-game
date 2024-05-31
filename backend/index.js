@@ -5,6 +5,7 @@ const userRoute = require('./routes/userRoute');
 const collectionRoutes = require('./routes/collectionRoutes');
 const cardRoutes = require('./routes/cardRoutes');
 const dotenv = require('dotenv');
+const cors = require('cors')
 
 dotenv.config();
 connectDB();
@@ -12,6 +13,7 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'))
 app.use('/uploads', express.static('public/uploads'));
