@@ -5,6 +5,7 @@ import theme2 from '/mysticcard.png';
 import theme3 from '/aquacard.png';
 import { Link, useSearchParams } from 'react-router-dom';
 import { createCard } from '../../node-api/server-api';
+import Navbar from "../components/Nav";
 
 function Accessories() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -134,11 +135,21 @@ function Accessories() {
   NFTs = JSON.parse(NFTs);
 
   return (
-    <div className='w-full h-full '>
-      <div className='acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh]   text-white '>
-        <div className='w-[100%] m-0 h-[60px] p-0 z-50 bg-slate-700 text-center '>
-          <h5>NAVBAR</h5>
-        </div>
+    <div className="w-full h-full ">
+      <div className="acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh] text-white ">
+        {/* <div className="w-[100%] m-0 h-[60px] p-0 z-50 flex flex-row justify-between navbar-component">
+          <div className="w-[150px] h-[85%] bg-red-500 my-auto"></div>
+
+          <span className="flex justify-between w-[60%] px-4 py-1">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <span
+                key={index}
+                className="w-[80px] h-[90%] bg-yellow-500 rounded-lg"
+              ></span>
+            ))}
+          </span>
+        </div> */}
+        <Navbar/>
         <div>
           <h1 className='text-3xl ml-[55px] p-4 font-bold '>Current Cards:</h1>{' '}
         </div>

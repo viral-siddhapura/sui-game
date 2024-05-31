@@ -5,6 +5,7 @@ import aqua from '../../public/aquacard.png';
 import mystic from '../../public/mysticcard.png';
 import map1 from '../../public/bgmap4.png';
 import { feedCards, getCardCollection } from '../../node-api/server-api';
+import Navbar from "../components/Nav";
 
 const Evolution = () => {
   const [food, setFood] = useState(1000);
@@ -127,17 +128,18 @@ const Evolution = () => {
         height: '100vh',
       }}
     >
-      <div className='fixed w-full flex justify-between p-4 bg-gray-700 h-[60px] text-white z-10'>
-        <div className='flex items-center'>
-          <span className=''>🍅 Food: {food}</span>
+      {/* <div className="fixed w-full flex justify-between p-4 bg-gray-700 h-[60px] text-white z-10">
+        <div className="flex items-center">
+          <span className="">🍖 Food: {food}</span>
         </div>
         <div className='flex items-center'>
           <span className=''>💰 Coins: 200</span>
         </div>
-      </div>
-      <div className='bg-blue-00 flex '>
-        <div className='flex flex-row w-[100%] h-[91.13vh] mt-16 '>
-          <div className='w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar'>
+      </div> */}
+      <Navbar/>
+      <div className="bg-blue-00 flex ">
+        <div className="flex flex-row w-[100%] h-[91.13vh] mt-16 ">
+          <div className="w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar">
             {characters.map((character) => (
               <div key={characters._id}>
                 <div
