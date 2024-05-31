@@ -10,15 +10,15 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.static('public'))
+app.use('/uploads', express.static('public/uploads'));
 
 app.use('/api/users', userRoute);
 app.use('/api/collections', collectionRoutes);
 app.use('/api/cards', cardRoutes);
-app.use('/uploads', express.static('public/uploads'));
-const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
