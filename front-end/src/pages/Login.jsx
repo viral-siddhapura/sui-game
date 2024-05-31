@@ -43,8 +43,9 @@ const Login = () => {
         <p className='font-bold text-xl font-[handlee] my-4'>
           Let's dive into world of SuiFrens!
         </p>
-        <div className='w-80 text-center mx-auto py-8'>
+        <div className='w-80 text-center flex justify-center  mx-auto py-8'>
           <GoogleLogin
+          
             onSuccess={responseMessage}
             onError={errorMessage}
             nonce={nonce}
