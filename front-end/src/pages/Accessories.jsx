@@ -5,7 +5,7 @@ import theme2 from '/mysticcard.png';
 import theme3 from '/aquacard.png';
 import { Link, useSearchParams } from 'react-router-dom';
 import { createCard } from '../../node-api/server-api';
-import Navbar from "../components/Nav";
+import Navbar from '../components/Nav';
 
 function Accessories() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -28,8 +28,7 @@ function Accessories() {
       let theme = '';
       if (selectedTheme.includes('jungle')) {
         theme = 'jungle';
-      }
-      if (selectedTheme.includes('aqua')) {
+      } else if (selectedTheme.includes('aqua')) {
         theme = 'aqua';
       } else {
         theme = 'mystic';
@@ -135,8 +134,8 @@ function Accessories() {
   NFTs = JSON.parse(NFTs);
 
   return (
-    <div className="w-full h-full ">
-      <div className="acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh] text-white ">
+    <div className='w-full h-screen bg-[url(war23.png)] bg-cover bg-no-repeat overflow-y-hidden'>
+      <div className='acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh] text-white '>
         {/* <div className="w-[100%] m-0 h-[60px] p-0 z-50 flex flex-row justify-between navbar-component">
           <div className="w-[150px] h-[85%] bg-red-500 my-auto"></div>
 
@@ -149,9 +148,9 @@ function Accessories() {
             ))}
           </span>
         </div> */}
-        <Navbar/>
+        <Navbar />
         <div>
-          <h1 className='text-3xl ml-[55px] p-4 font-bold '>Current Cards:</h1>{' '}
+          <h1 className='text-3xl ml-[55px] p-4 font-bold '>Current NFTs:</h1>{' '}
         </div>
         <div className='flex w-[100%] mt-[0px] p-0 h-[100%]'>
           <div className='w-[80%] p-0 h-[85vh] bg-yellow-00 overflow-y-hidden '>
@@ -192,7 +191,7 @@ function Accessories() {
               }
             </div>
           </div>
-          <div className='w-[20%] h-[95vh] mt-[-70px] bg-cyan-400 theme-wrapper p-0 flex flex-col justify-between items-center'>
+          <div className='w-[20%] h-[90vh] mt-[-70px] bg-cyan-400 theme-wrapper p-0 flex flex-col justify-between items-center no-scrollbar'>
             <h2 className='text-xl font-bold mb-4'>Select Theme:</h2>
             <div className='theme-options flex flex-col items-center'>
               <img
@@ -227,7 +226,7 @@ function Accessories() {
               />
 
               <button
-                className={`mt-8 mb-4 px-4 py-2  rounded-md ${
+                className={`mb-96 px-4 py-2  rounded-md ${
                   selectedImage
                     ? 'bg-green-600 text-white'
                     : 'bg-gray-300 cursor-not-allowed text-black'

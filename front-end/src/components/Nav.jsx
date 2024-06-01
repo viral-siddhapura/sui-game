@@ -6,7 +6,7 @@ import { useWallet } from '@suiet/wallet-kit';
 
 function Navbar() {
   const links = [
-    { url: 'nfts', name: 'Nfts' },
+    { url: 'nfts', name: 'NFTs' },
     { url: 'accessories', name: 'Dress Up' },
     { url: 'evolution', name: 'Evolution' },
     { url: 'battleground', name: 'Battle Map' },
@@ -26,19 +26,19 @@ function Navbar() {
           </div>
         </Link>
         <span className='flex justify-between w-[60%] px-4 py-1'>
-          <span className='w-[80px] h-[90%] bg-gradient-to-r from-[#4e1818] to-[#713838] rounded-lg flex items-center justify-evenly'>
+          <span className='w-[80px] h-[90%] bg-gradient-to-r from-[#4e1818] to-[#713838] rounded-lg flex items-center justify-evenly '>
             <img src={food} alt='' className='w-[30px] h-[30px]' />
-            <p>500</p>
+            <p>{localStorage.getItem('food-coin')}</p>
           </span>
-          <span className='w-[80px] h-[90%] bg-gradient-to-r from-[#4e1818] to-[#713838] rounded-lg flex items-center justify-evenly'>
+          <span className='w-[80px] h-[90%] bg-gradient-to-r from-[#4e1818] to-[#713838] rounded-lg flex items-center justify-evenly '>
             <img src={coin} alt='' className='w-[30px] h-[30px]' />
-            <p>500</p>
+            <p>{localStorage.getItem('game-coin')}</p>
           </span>
           {links.map((link, index) => (
             <Link
               to={`/${link.url}`}
               key={index}
-              className='w-[80px] h-[90%] bg-gradient-to-r from-[#713838] to-[#4e1818] rounded-lg flex items-center justify-center'
+              className='w-[90px] h-[90%] bg-gradient-to-r from-amber-900 to-[#4e1818] rounded-lg flex items-center justify-center hover:from-red-800 hover:to-amber-700'
             >
               <span className='w-full h-full flex items-center justify-center'>
                 {link.name}
@@ -51,6 +51,7 @@ function Navbar() {
               localStorage.removeItem('WK__LAST_CONNECT_WALLET_NAME');
               wallet.disconnect();
             }}
+            className='hover:opacity-80'
           >
             LogOut
             <span>
