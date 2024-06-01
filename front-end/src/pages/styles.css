@@ -71,7 +71,7 @@
   border: 8px solid rgb(246, 243, 155);
 }
 .theme-wrapper {
-  background-image: url('https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg');
+  background-image: url("https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg");
   overflow-y: scroll;
   overflow-x: hidden;
   background-size: cover;
@@ -93,7 +93,7 @@
 }
 
 .theme-details {
-  background-image: url('/scroll.png');
+  background-image: url("../../public/scroll.png");
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
@@ -102,13 +102,42 @@
 /*  battleground css  */
 
 .battleground {
-  background-image: url('//bgmap4.png');
+  background-image: url("../../public//bgmap4.png");
   overflow-y: hidden;
   overflow-x: hidden;
   background-size: cover;
 }
 
 .card-area {
-  background-image: url('https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg');
+  background-image: url("https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg");
+  background-size: cover;
+}
+
+.battle-button button {
+  background: linear-gradient(45deg, #ebff0c, #bb7000);
+  transition: all 0.5s;
+}
+
+.battle-button button:hover {
+  background: linear-gradient(45deg, #f0c118, #ca7d00);
+}
+
+.title-reveal {
+  animation: revealAnimation 0.5s ease-in-out;
+}
+
+@keyframes revealAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-details{
+  background-image: url("../../public/bg22.png");
   background-size: cover;
 }
