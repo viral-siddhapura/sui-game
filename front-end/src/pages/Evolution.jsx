@@ -4,11 +4,17 @@ import jungle from '/junglecard1.png';
 import aqua from '/aquacard.png';
 import mystic from '/mysticcard.png';
 import map1 from '/bgmap4.png';
-import { feedCards, getCardCollection } from '../../node-api/server-api';
+import {
+  addCardToBattleDeck,
+  feedCards,
+  fetchBattleDeck,
+  getCardCollection,
+} from '../../node-api/server-api';
 import Navbar from '../components/Nav';
 
 const Evolution = () => {
   const levelUp = new Audio('/level-up.mp3');
+  const fightAudio = new Audio('/fight.mp3');
   const [food, setFood] = useState(1000);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [battleDeck, setBattleDeck] = useState([null, null, null]);
@@ -57,6 +63,8 @@ const Evolution = () => {
     const res = await getCardCollection();
     console.log(res.data);
     setCharcaters(res.data);
+    const resp = await fetchBattleDeck();
+    setBattleDeck(resp.data.battleDeck);
   };
 
   const [refresh, setRefresh] = useState(true);
@@ -89,7 +97,7 @@ const Evolution = () => {
       level: selectedCharacter.level + 1,
     });
     setRefresh(!refresh);
-    levelUp.play()
+    levelUp.play();
     alert('Leveled Up!');
     // window.location.reload();
     if (selectedCharacter) {
@@ -123,9 +131,11 @@ const Evolution = () => {
 
   const handleAddToBattle = async () => {
     try {
-      const res = await battleDeck(card)
+      const res = await addCardToBattleDeck(selectedCharacter._id);
+      fightAudio.play();
     } catch (error) {
-      console.log(error)
+      alert(error);
+      console.log(error);
     }
     const newBattleDeck = [...battleDeck];
     const indexToReplace = newBattleDeck.findIndex((slot) => slot === null);

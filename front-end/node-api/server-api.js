@@ -44,10 +44,26 @@ export const feedCards = async (cardDetails) => {
   return res;
 };
 
-export const battleDeck = async (card_id) => {
-  const res = await axios.put(
+export const addCardToBattleDeck = async (card_id) => {
+  const res = await axios.post(
     `${import.meta.env.VITE_APP_SERVER_URL}/api/users/add/battle-deck`,
     { card: card_id, user_id: localStorage.getItem('user_id') }
+  );
+  return res;
+};
+
+export const fetchBattleDeck = async () => {
+  const res = await axios.get(
+    `${
+      import.meta.env.VITE_APP_SERVER_URL
+    }/api/users/get/battle-deck?user_id=${localStorage.getItem('user_id')}`
+  );
+  return res;
+};
+
+export const fetchOpponents = async () => {
+  const res = await axios.get(
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/users/`
   );
   return res;
 };

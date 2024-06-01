@@ -2,24 +2,26 @@ import { Link } from 'react-router-dom';
 import food from '/food.png';
 import coin from '/coin.png';
 import logo from '/suifrenia-logo.png';
-import { useWallet } from '@suiet/wallet-kit';
+import { useAccountBalance, useWallet } from '@suiet/wallet-kit';
+import { useEffect } from 'react';
 
 function Navbar() {
   const links = [
     { url: 'nfts', name: 'NFTs' },
-    { url: 'accessories', name: 'Dress Up' },
-    { url: 'evolution', name: 'Evolution' },
+    { url: `accessories?nfts=${localStorage.getItem('nfts')}`, name: 'Dress Up' },
+    { url: `evolution`, name: 'Evolution' },
     { url: 'mappage', name: 'Battle Map' },
   ];
 
   const wallet = useWallet();
+  const { error, loading, balance } = useAccountBalance();
 
   return (
     <div>
-      <div className='w-[100%] m-0 h-[60px] p-0 z-50 flex flex-row justify-between navbar-component text-white'>
+      <div className='w-[100%] m-0 h-[60px] py-1 z-50 flex flex-row justify-between navbar-component text-white'>
         <Link to={'/'}>
           <div className='w-[150px] flex justify-between items-center cursor-pointer'>
-            <img src={logo} alt='' className='w-[60px] h-[60px]' />
+            <img src={logo} alt='' width={60} />
             <h1 className='text-5xl font-bold font-[handlee] text-black'>
               SuiFrenia
             </h1>
@@ -45,6 +47,9 @@ function Navbar() {
               </span>
             </Link>
           ))}
+          <div className='border-2 bg-amber-600 px-1 rounded-xl flex items-center'>
+            <p>{(Number.parseInt(balance) / 10 ** 9).toFixed(3)} SUI</p>{' '}
+          </div>
           <Link
             to='/login'
             onClick={() => {

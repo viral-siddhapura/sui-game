@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'tailwindcss/tailwind.css';
 import drop from '/dropcard.png';
 import bg22 from '/bg22.png';
 import view3 from '/war25.png';
+import Navbar from '../components/Nav';
+import { fetchOpponents } from '../../node-api/server-api';
 
 // Sample user data with coordinates
-const users = [
-  { id: 1, name: 'User1', level: 10 },
-  { id: 2, name: 'User2', level: 12 },
-  { id: 3, name: 'User3', level: 8 },
-  { id: 4, name: 'User4', level: 8 },
-  { id: 5, name: 'User5', level: 8 },
-  { id: 6, name: 'User6', level: 8 },
-  // Add more users with random coordinates
-];
 
 const MapPage = () => {
+  const [users, setUsers] = useState([
+    { id: 1, name: 'User1', level: 10 },
+    { id: 2, name: 'User2', level: 12 },
+    { id: 3, name: 'User3', level: 8 },
+    { id: 4, name: 'User4', level: 8 },
+    { id: 5, name: 'User5', level: 8 },
+    { id: 6, name: 'User6', level: 8 },
+    // Add more users with random coordinates
+  ]);
   const [hoveredUser, setHoveredUser] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
@@ -37,11 +39,18 @@ const MapPage = () => {
 
   const stepSize = 400; // Define step size for x-coordinate increment
 
+  const fetchData = async () => {
+    const resp = await fetchOpponents();
+    setUsers(resp.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className='bg-red-200'>
-      <nav className='fixed top-0 left-0 w-full h-[60px] bg-gray-800 text-white flex items-center justify-center z-50'>
-        Navbar
-      </nav>
+      <Navbar />
       <div
         className=' w-[100%] h-[100vh] bg-no-repeat bg-cover overflow-auto bg-red-700'
         style={{
@@ -49,7 +58,7 @@ const MapPage = () => {
         }}
       >
         <div
-          className='w-[100%] h-[60%] mt-[200px]  flex overflow-x-scroll border-8 border-l-0 border-r-0 border-double bg-contain bg-local  no-scrollbar'
+          className='w-[100%] h-[80%] mt-[30px]  flex overflow-x-scroll border-8 border-l-0 border-r-0 border-double bg-contain bg-local  no-scrollbar'
           style={{ backgroundImage: `url(${bg22})`, opacity: 0.9 }}
         >
           {/* <h1 className="bg-red-500 h-[60px] m-4 p-4">qwerty</h1>  */}
@@ -71,13 +80,17 @@ const MapPage = () => {
                   <img src={drop} className='w-full h-full' />
                   {hoveredUser && hoveredUser.id === user.id && (
                     <div
-                      className='absolute top-[-20px] left-[70px] h-[60px] w-[100px] border-4 border-double text-center text-bold border-red-700 text-yellow-100 text-sm p-1 rounded'
+                      className='absolute top-[-20px] left-[70px] h-[60px] w-[130px] border-4 border-double text-center text-bold border-red-700 text-yellow-100 text-md p-1 rounded'
                       style={{
                         backgroundImage:
                           "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
                       }}
                     >
-                      {user.name} (Level {user.level})
+                      {user.name ||
+                        user.walletAddress.slice(0, 5) +
+                          '...' +
+                          user.walletAddress.slice(63, 66)}{' '}
+                      <p>🪙{user.gameCoin} Coins</p>
                     </div>
                   )}
                 </div>

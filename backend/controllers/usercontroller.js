@@ -76,7 +76,7 @@ exports.addToBattleDeck = async (req, res) => {
     const user = await User.findById(user_id);
     if (user.battleDeck.length >= 3) {
       return res
-        .status(200)
+        .status(400)
         .json({ error: 'Battle deck can have max 3 cards.' });
     }
     if (!user.battleDeck.includes(card)) {

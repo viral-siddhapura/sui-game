@@ -1,19 +1,20 @@
-import React from "react";
-import land1 from "../../public/1.png";
-import land2 from "../../public/2.png";
-import land3 from "../../public/3.png";
-import land4 from "../../public/4.png";
-import land5 from "../../public/5.png";
-import land6 from "../../public/6.png";
-import land7 from "../../public/7.png";
+import React from 'react';
+import land1 from '../../public/1.png';
+import land2 from '../../public/2.png';
+import land3 from '../../public/3.png';
+import land4 from '../../public/4.png';
+import land5 from '../../public/5.png';
+import land6 from '../../public/6.png';
+import land7 from '../../public/7.png';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 const LandingPage = () => {
   return (
-    <div className="flex flex-col justify w-screen overflow-x-hidden no-scrollbar h-screen content center bg-violet-950">
+    <div className='flex flex-col justify w-screen overflow-x-hidden no-scrollbar h-screen content center bg-violet-950'>
       <div>
-        <img src={land1} alt="" />
+        <img src={land1} alt='' />
       </div>
+
       <div>
         <img src={land2} alt='' />
       </div>
@@ -30,12 +31,12 @@ const LandingPage = () => {
         <img src={land6} alt='' />
       </div>
       <div>
-        <img src={land7} alt="" />
+        <img src={land7} alt='' />
       </div>
-      <div className="fixed top-4 right-[20px]">
-        <Link to={"/login"}>
-          <button className="bg-gradient-to-r from-[#f0d040] to-[#cd8f09] w-[200px] h-[50px] rounded-lg font-bold market-cards">
-            PLAY NOW
+      <div className='fixed top-4 right-[20px] '>
+        <Link to={'/login'}>
+          <button className='bg-gradient-to-r text-2xl font-[handlee] from-[#f0d040] to-[#cd8f09] w-[200px] h-[50px] rounded-lg font-bold market-cards hover:from-yellow-600 hover:to-amber-500 shadow-2xl hover:shadow-amber-500 shadow-amber-400'>
+            PLAY NOW!
           </button>
         </Link>
       </div>

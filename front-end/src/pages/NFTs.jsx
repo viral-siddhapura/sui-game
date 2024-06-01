@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { fetchSuiFrensNfts } from '../utils/sui-api';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Nav';
 
 const NFTs = () => {
   const [data, setData] = useState(null);
@@ -51,6 +52,7 @@ const NFTs = () => {
       setError(err.message);
     } finally {
       setLoading(false);
+      localStorage.setItem('nfts', JSON.stringify(NFTs))
     }
   };
 
@@ -60,10 +62,10 @@ const NFTs = () => {
 
   return (
     <div className='w-full h-screen bg-black text-white'>
-      <h2 className='text-center font-[handlee] text-5xl pt-3 mb-6'>
-        Your Current NFT Collection
+      <h2 className='text-center font-[handlee] text-5xl pt-3 mb-8 underline'>
+        Your Current NFT Collection 😎
       </h2>
-      {loading && <p className='text-center'>Loading...</p>}
+      {loading && <p className='text-center text-lg'>Fetching your NFTs...</p>}
       {error && <p>Error: {error}</p>}
       <div className='flex justify-center items-center gap-7 flex-wrap my-7'>
         {NFTs.length
@@ -71,7 +73,7 @@ const NFTs = () => {
               return (
                 <div
                   key={item.data.objectId}
-                  className='border-4 rounded-2xl border-yellow-600 cursor-pointer bg-yellow-400 hover:bg-yellow-600'
+                  className='border-4 rounded-2xl border-yellow-600 cursor-pointer bg-yellow-400 hover:bg-amber-400 hover:scale-110 duration-300 transition-transform'
                 >
                   <img
                     src={item.data.display.data.image_url}
@@ -99,14 +101,14 @@ const NFTs = () => {
       </div>
       <div className='text-center my-6 flex justify-center gap-10'>
         <button
-          className='bg-yellow-500 rounded-xl px-4 py-2 text-md hover:bg-yellow-600'
+          className='bg-amber-500 rounded-xl px-4 py-2 text-xl hover:bg-yellow-600'
           onClick={makeRpcCall}
         >
           Refresh Wallet
         </button>
         {NFTs.length && !loading ? (
           <Link to={`/accessories?nfts=${JSON.stringify(NFTs)}`}>
-            <button className='bg-orange-500 rounded-xl px-4 py-2 text-md hover:bg-orange-600'>
+            <button className='bg-orange-500 rounded-xl px-4 py-2 text-xl hover:bg-orange-600'>
               Continue
             </button>
           </Link>
