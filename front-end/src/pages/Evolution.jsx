@@ -59,6 +59,8 @@ const Evolution = () => {
     setCharcaters(res.data);
   };
 
+  const [refresh, setRefresh] = useState(true);
+
   useEffect(() => {
     if (characters.length > 0) {
       setSelectedCharacter({
@@ -75,7 +77,7 @@ const Evolution = () => {
       });
     }
     fetchCardCollections();
-  }, []);
+  }, [refresh]);
 
   const handleFeed = async () => {
     await feedCards({
@@ -86,9 +88,10 @@ const Evolution = () => {
       stamina: selectedCharacter.stamina + 4,
       level: selectedCharacter.level + 1,
     });
-    // alert('Leveled Up!');
-    // window.location.reload();
+    setRefresh(!refresh);
     levelUp.play()
+    alert('Leveled Up!');
+    // window.location.reload();
     if (selectedCharacter) {
       const foodNeeded =
         selectedCharacter.foodRequired - selectedCharacter.foodProgress;
@@ -118,7 +121,12 @@ const Evolution = () => {
     }
   };
 
-  const handleAddToBattle = () => {
+  const handleAddToBattle = async () => {
+    try {
+      const res = await battleDeck(card)
+    } catch (error) {
+      console.log(error)
+    }
     const newBattleDeck = [...battleDeck];
     const indexToReplace = newBattleDeck.findIndex((slot) => slot === null);
     if (indexToReplace !== -1) {

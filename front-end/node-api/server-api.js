@@ -38,7 +38,16 @@ export const getCardCollection = async () => {
 
 export const feedCards = async (cardDetails) => {
   const res = await axios.put(
-    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/${cardDetails.id}`, cardDetails
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/cards/${cardDetails.id}`,
+    cardDetails
+  );
+  return res;
+};
+
+export const battleDeck = async (card_id) => {
+  const res = await axios.put(
+    `${import.meta.env.VITE_APP_SERVER_URL}/api/users/add/battle-deck`,
+    { card: card_id, user_id: localStorage.getItem('user_id') }
   );
   return res;
 };

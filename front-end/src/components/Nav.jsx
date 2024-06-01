@@ -9,7 +9,7 @@ function Navbar() {
     { url: 'nfts', name: 'NFTs' },
     { url: 'accessories', name: 'Dress Up' },
     { url: 'evolution', name: 'Evolution' },
-    { url: 'battleground', name: 'Battle Map' },
+    { url: 'mappage', name: 'Battle Map' },
   ];
 
   const wallet = useWallet();
