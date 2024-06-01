@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
-import jungle from '../../public/junglecard1.png';
-import aqua from '../../public/aquacard.png';
-import mystic from '../../public/mysticcard.png';
-import map1 from '../../public/bgmap4.png';
+import jungle from '/junglecard1.png';
+import aqua from '/aquacard.png';
+import mystic from '/mysticcard.png';
+import map1 from '/bgmap4.png';
 import { feedCards, getCardCollection } from '../../node-api/server-api';
-import Navbar from "../components/Nav";
+import Navbar from '../components/Nav';
 
 const Evolution = () => {
   const [food, setFood] = useState(1000);
@@ -136,10 +136,10 @@ const Evolution = () => {
           <span className=''>💰 Coins: 200</span>
         </div>
       </div> */}
-      <Navbar/>
-      <div className="bg-blue-00 flex ">
-        <div className="flex flex-row w-[100%] h-[91.13vh] mt-16 ">
-          <div className="w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar">
+      <Navbar />
+      <div className='bg-blue-00 flex '>
+        <div className='flex flex-row w-[100%] h-[91.13vh] mt-16 '>
+          <div className='w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar'>
             {characters.map((character) => (
               <div key={characters._id}>
                 <div

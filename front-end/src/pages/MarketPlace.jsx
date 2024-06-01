@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "tailwindcss/tailwind.css";
-import food from "../../public/marketfood.png";
-import coin from "../../public/marketcoin.png";
-import nft from "../../public/marketnft.png";
-import map1 from "../../public/bgmap4.png";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'tailwindcss/tailwind.css';
+import food from '/marketfood.png';
+import coin from '/marketcoin.png';
+import nft from '/marketnft.png';
+import map1 from '/bgmap4.png';
 
 // const Box = ({ id }) => {
 //   return (
@@ -27,53 +27,53 @@ const Marketplace = () => {
         backgroundImage:
           "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
 
-        backgroundSize: "cover",
+        backgroundSize: 'cover',
         // backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: 'no-repeat',
         // width: "100%",
-        height: "100vh",
+        height: '100vh',
       }}
     >
-      <div className="w-[100%] m-0 h-[60px] p-0 z-50 bg-slate-700 text-center ">
+      <div className='w-[100%] m-0 h-[60px] p-0 z-50 bg-slate-700 text-center '>
         <h5>NAVBAR</h5>
       </div>
-      <div className="flex flex-wrap justify-center mt-12 market-cards">
+      <div className='flex flex-wrap justify-center mt-12 market-cards'>
         <div
-          className="bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative"
+          className='bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative'
           style={{
             backgroundImage: `url(${food})`,
           }}
         >
-          <div className="absolute  bottom-[10%]  w-[90%] flex justify-evenly items-center m-4">
-            <p className="text-[30px] font-bold">50</p>
-            <button className="text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1">
-              <p className="translate-y-1">BUY</p>
+          <div className='absolute  bottom-[10%]  w-[90%] flex justify-evenly items-center m-4'>
+            <p className='text-[30px] font-bold'>50</p>
+            <button className='text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1'>
+              <p className='translate-y-1'>BUY</p>
             </button>
           </div>
         </div>
         <div
-          className="bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative"
+          className='bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative'
           style={{
             backgroundImage: `url(${coin})`,
           }}
         >
-          <div className="absolute bottom-[10%] w-[90%] flex justify-evenly items-center m-4">
-            <p className="text-[30px] font-bold">100</p>
-            <button className="text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1">
-              <p className="translate-y-1">BUY</p>
+          <div className='absolute bottom-[10%] w-[90%] flex justify-evenly items-center m-4'>
+            <p className='text-[30px] font-bold'>100</p>
+            <button className='text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1'>
+              <p className='translate-y-1'>BUY</p>
             </button>
           </div>
         </div>
         <div
-          className="bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative"
+          className='bg-red-00 w-[23vw] bg-cover rounded-2xl h-[570px] m-4 relative'
           style={{
             backgroundImage: `url(${nft})`,
           }}
         >
-          <div className="absolute bottom-[10%] w-[90%] flex justify-evenly items-center m-4">
-            <p className="text-[30px] font-bold">200</p>
-            <button className="text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1">
-              <p className="translate-y-1">BUY</p>
+          <div className='absolute bottom-[10%] w-[90%] flex justify-evenly items-center m-4'>
+            <p className='text-[30px] font-bold'>200</p>
+            <button className='text-[30px] font-medium px-2 bg-gradient-to-r from-green-500 to-green-800 w-[100px] rounded-[16px] text-center border-2 border-black flex items-center justify-center -pb-1'>
+              <p className='translate-y-1'>BUY</p>
             </button>
           </div>
         </div>

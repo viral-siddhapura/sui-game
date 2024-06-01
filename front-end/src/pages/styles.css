@@ -13,7 +13,7 @@
   border: 10px solid transparent;
   background-origin: border-box;
   background-clip: content-box, border-box;
-  background-image: url("https://example.com/your-border-image.jpg");
+  background-image: url('https://example.com/your-border-image.jpg');
 }
 
 @keyframes fillBar {
@@ -49,7 +49,7 @@
 /* accessories page css */
 
 .acc-page {
-  background-image: url("../../public//bgmap4.png");
+  background-image: url('//bgmap4.png');
   background-size: cover;
 }
 .options-container {
@@ -58,10 +58,10 @@
   justify-content: flex-start;
   align-items: center;
   height: 250px;
-  overflow-x:scroll;
+  overflow-x: scroll;
   overflow-y: hidden;
 }
-.options-container img{
+.options-container img {
   width: 150px;
   height: auto;
   cursor: pointer;
@@ -70,53 +70,45 @@
   border-radius: 24px;
   border: 8px solid rgb(246, 243, 155);
 }
-.theme-wrapper{
-  background-image: url("https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg");
+.theme-wrapper {
+  background-image: url('https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg');
   overflow-y: scroll;
   overflow-x: hidden;
   background-size: cover;
 }
-.theme-options{
+.theme-options {
   width: 400px;
   height: 100vh;
-  
-
 }
 
-.theme-options img{
+.theme-options img {
   width: 200px;
   height: auto;
   margin: 20px 10px;
   cursor: pointer;
 }
 
-.theme-options img:focus{
+.theme-options img:focus {
   border: 8px solid green;
 }
 
-.theme-details{
-  background-image: url("../../public/scroll.png");
+.theme-details {
+  background-image: url('/scroll.png');
   background-size: contain;
   background-repeat: no-repeat;
   text-align: center;
 }
 
-
 /*  battleground css  */
 
-.battleground{
-  background-image: url("../../public//bgmap4.png");
+.battleground {
+  background-image: url('//bgmap4.png');
   overflow-y: hidden;
   overflow-x: hidden;
   background-size: cover;
 }
 
-.card-area{
-  background-image: url("https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg");
+.card-area {
+  background-image: url('https://thumbs.dreamstime.com/b/old-vintage-treasure-map-nautical-theme-background-exploration-adventure-45891239.jpg');
   background-size: cover;
 }
-
-
-
-
-
