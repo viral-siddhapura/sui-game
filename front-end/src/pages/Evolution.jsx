@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import './styles.css';
-import jungle from '../../public/junglecard1.png';
-import aqua from '../../public/aquacard.png';
-import mystic from '../../public/mysticcard.png';
-import map1 from '../../public/bgmap4.png';
+import jungle from '/junglecard1.png';
+import aqua from '/aquacard.png';
+import mystic from '/mysticcard.png';
+import map1 from '/bgmap4.png';
 import { feedCards, getCardCollection } from '../../node-api/server-api';
-import Navbar from "../components/Nav";
+import Navbar from '../components/Nav';
 
 const Evolution = () => {
+  const levelUp = new Audio('/level-up.mp3');
   const [food, setFood] = useState(1000);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [battleDeck, setBattleDeck] = useState([null, null, null]);
@@ -60,7 +61,18 @@ const Evolution = () => {
 
   useEffect(() => {
     if (characters.length > 0) {
-      setSelectedCharacter(characters[0]);
+      setSelectedCharacter({
+        id: 3,
+        name: 'CapyBara',
+        level: 1,
+        hp: 120,
+        speed: 12,
+        power: 20,
+        stamina: 25,
+        image: mystic,
+        foodRequired: 20,
+        foodProgress: 0,
+      });
     }
     fetchCardCollections();
   }, []);
@@ -74,8 +86,9 @@ const Evolution = () => {
       stamina: selectedCharacter.stamina + 4,
       level: selectedCharacter.level + 1,
     });
-    alert('Leveled Up!');
-    window.location.reload();
+    // alert('Leveled Up!');
+    // window.location.reload();
+    levelUp.play()
     if (selectedCharacter) {
       const foodNeeded =
         selectedCharacter.foodRequired - selectedCharacter.foodProgress;
@@ -118,7 +131,7 @@ const Evolution = () => {
 
   return (
     <div
-      className='flex flex-col bg-yellow-600 h-[100vh]'
+      className='flex flex-col bg-yellow-600 h-screen overflow-y-hidden'
       style={{
         backgroundImage: `url(${map1})`,
         backgroundSize: 'cover',
@@ -136,10 +149,11 @@ const Evolution = () => {
           <span className=''>💰 Coins: 200</span>
         </div>
       </div> */}
-      <Navbar/>
-      <div className="bg-blue-00 flex ">
-        <div className="flex flex-row w-[100%] h-[91.13vh] mt-16 ">
-          <div className="w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar">
+      <Navbar />
+      <div className='bg-blue-00 flex '>
+        <div className='flex flex-row w-[100%] h-[91.13vh]'>
+          <div className='w-[30%] mt-4 rounded-3xl ml-4 p-4 flex flex-col bg-orange-00 overflow-auto no-scrollbar'>
+            <h2 className='text-white underline'>Card Panel</h2>
             {characters.map((character) => (
               <div key={characters._id}>
                 <div
@@ -152,7 +166,7 @@ const Evolution = () => {
                     className='w-full h-auto rounded-3xl'
                   />
                   <div className='absolute bottom-6 flex flex-col items-center gap-1'>
-                    <span className=' font-bold text-3xl bg-white'>
+                    <span className=' font-bold text-2xl bg-white'>
                       {character.name}
                     </span>
 
@@ -166,11 +180,14 @@ const Evolution = () => {
             ))}
           </div>
           <div className=' mt-4 flex flex-col ml-[5%] w-[50%] h-[88vh]  rounded-3xl bg-yellow-00 items-center  text-xl '>
+            <p className='font-[handlee] text-white text-2xl'>
+              Select a card from left panel to feed and evolve!
+            </p>
             {selectedCharacter && (
               <div className='w-[100%] h-[100vh] p-[20px] flex flex-col items-center bg-cyan-00 overflow-scroll rounded-3xl no-scrollbar shadow-lg '>
                 <div className='h-[800px] scale-[.9] relative'>
                   <img
-                    src={selectedCharacter.cardImgUrl}
+                    src={selectedCharacter.cardImgUrl || '/mainlogo.png'}
                     alt={selectedCharacter.name}
                     className=' rounded-3xl h-[100%]'
                   />
@@ -226,7 +243,7 @@ const Evolution = () => {
                   </div>
                 </div>
 
-                <p className='mt-4 text-yellow-200'>
+                <p className='-mt-2 text-yellow-200'>
                   Food required for next level: {selectedCharacter.foodRequired}
                 </p>
                 <div className='w-[300px] h-[10px] border-yellow-700 border-[1px] rounded-full overflow-hidden'>
@@ -258,9 +275,9 @@ const Evolution = () => {
                 <div className='mt-4'>
                   <button
                     onClick={handleFeed}
-                    className='w-[200px] p-2 bg-blue-500 text-white rounded hover:bg-blue-700'
+                    className='w-[200px] p-2 bg-blue-800 text-white rounded hover:bg-blue-700'
                   >
-                    Feed
+                    Feed 🍅
                   </button>
                 </div>
                 <div className='mt-2'>
@@ -268,7 +285,7 @@ const Evolution = () => {
                     onClick={handleAddToBattle}
                     className='w-[200px] p-2 bg-green-500 text-white rounded hover:bg-green-700'
                   >
-                    Add to Battle
+                    Add to Battle 🥷
                   </button>
                 </div>
               </div>
@@ -276,7 +293,7 @@ const Evolution = () => {
           </div>
         </div>
         <div
-          className='bg-green-700 mt-[60px] w-[30%] flex flex-col z-10 h-[91.64vh] p-4 text-center font-bold text-slate-700 border-[10px] border-t-0 border-b-0 border-yellow-100 border-double '
+          className='bg-green-700 w-[30%] flex flex-col z-10 h-[91.64vh] p-4 text-center font-bold text-slate-700 border-[10px] border-t-0 border-b-0 border-yellow-100 border-double '
           style={{
             backgroundImage:
               "url('https://img.freepik.com/premium-photo/old-brown-crumpled-paper-texture-background-vintage-wallpaper_118047-8897.jpg')",
@@ -286,7 +303,7 @@ const Evolution = () => {
             <h2>Battle Deck💪</h2>
           </div>
 
-          <div className='flex flex-col p-[20px] no-scrollbar mt-4 overflow-auto bg-red-00'>
+          <div className='flex flex-col p-[20px] no-scrollbar mt-1 overflow-auto bg-red-00'>
             {battleDeck.map((slot, index) => (
               <div
                 key={index}

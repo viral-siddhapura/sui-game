@@ -15,19 +15,19 @@ const LandingPage = () => {
         <img src={land1} alt="" />
       </div>
       <div>
-        <img src={land2} alt="" />
+        <img src={land2} alt='' />
       </div>
       <div>
-        <img src={land3} alt="" />
+        <img src={land3} alt='' />
       </div>
       <div>
-        <img src={land4} alt="" />
+        <img src={land4} alt='' />
       </div>
       <div>
-        <img src={land5} alt="" />
+        <img src={land5} alt='' />
       </div>
       <div>
-        <img src={land6} alt="" />
+        <img src={land6} alt='' />
       </div>
       <div>
         <img src={land7} alt="" />

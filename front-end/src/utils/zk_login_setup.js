@@ -19,8 +19,7 @@ import { TransactionBlock } from '@mysten/sui.js/transactions';
 const FULLNODE_URL = 'https://fullnode.mainnet.sui.io';
 const suiClient = new SuiClient({ url: FULLNODE_URL });
 
-const { epoch, epochDurationMs, epochStartTimestampMs } =
-  await suiClient.getLatestSuiSystemState();
+const { epoch, epochDurationMs, epochStartTimestampMs } = await suiClient.getLatestSuiSystemState();
 
 // Gnerating Ephemeral key pair - public and private keys
 const ephemeralKeyPair = new Ed25519Keypair();

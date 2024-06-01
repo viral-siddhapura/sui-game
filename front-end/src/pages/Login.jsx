@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 const Login = () => {
   const navigate = useNavigate();
   const [jwt, setJwt] = useState('');
-  const [userSalt, setUserSalt] = useState('');
+  const [userSalt, setUserSalt] = useState(localStorage.getItem('salt') || '');
   const [nonce, setNonce] = useState('');
 
   const responseMessage = async (response) => {
@@ -30,6 +30,8 @@ const Login = () => {
       });
       console.log('Zklogin : ', resp.data);
       localStorage.setItem('user_id', resp.data._id);
+      localStorage.setItem('game-coin', resp.data.gameCoin);
+      localStorage.setItem('food-coin', resp.data.foodCoin);
       navigate('/nfts');
     } catch (error) {
       console.log(error);
@@ -41,9 +43,8 @@ const Login = () => {
 
   const wallet = useWallet();
 
-  const handleWalletConnect = async (e) => {
+  const handleWalletConnect = async () => {
     if (wallet.status === 'connected') {
-      console.log('connect success', e);
       const walletAddress = await wallet.account;
       localStorage.setItem('wallet_addr', walletAddress.address);
       try {
@@ -52,6 +53,8 @@ const Login = () => {
         });
         console.log('Sui wallet login : ', resp.data);
         localStorage.setItem('user_id', resp.data._id);
+        localStorage.setItem('game-coin', resp.data.gameCoin);
+        localStorage.setItem('food-coin', resp.data.foodCoin);
         navigate('/nfts');
       } catch (error) {
         console.log(error);
