@@ -15,7 +15,9 @@ function BattleGround() {
   const [scorePlayer2, setScorePlayer2] = useState(0);
 
   const fight = new Audio('/fight.mp3');
-  const card = new Audio('/card.mp3');
+  const cardAudio = new Audio('/card.mp3');
+  const roundWinAudio = new Audio('/win2.mp3');
+  const winnerAudio = new Audio('/winner.mp3');
   const [queryParams] = useSearchParams();
 
   useEffect(() => {
@@ -40,27 +42,39 @@ function BattleGround() {
   const handleCardClick = (card, player) => {
     if (isBattleStarted) {
       if (player === 1) {
+        cardAudio.play()
         setSelectedCardPlayer1(card);
         const opponentCard = battleDeck2.sort((a, b) => b[title] - a[title])[0];
         console.log('opp -> ', opponentCard);
+        cardAudio.play();
         setSelectedCardPlayer2(opponentCard);
+        compareCards()
       }
+    }
+    else {
+      alert("Start the battle first!")
     }
   };
 
   const compareCards = () => {
+    console.log("compare cards ()")
     if (selectedCardPlayer1 && selectedCardPlayer2) {
+      console.log("Started comparing cards...")
       const player1Value = selectedCardPlayer1[title.toLowerCase()];
       const player2Value = selectedCardPlayer2[title.toLowerCase()];
 
       if (player1Value > player2Value) {
+        roundWinAudio.play();
         setWinner(1);
         setScorePlayer1(scorePlayer1 + 1);
+        alert(`Round ${round} : You won`)
       } else if (player1Value < player2Value) {
         setWinner(2);
+        alert(`Round ${round} : You loose`)
         setScorePlayer2(scorePlayer2 + 1);
       } else {
         setWinner('draw');
+        alert(`Round ${round} : Draw`);
         setScorePlayer1(scorePlayer1 + 0.5);
         setScorePlayer2(scorePlayer2 + 0.5);
       }
@@ -71,7 +85,7 @@ function BattleGround() {
         } else {
           endGame();
         }
-      }, 1000);
+      }, 3000);
     }
   };
 

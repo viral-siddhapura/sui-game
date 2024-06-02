@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import bear from '/bear-default.png';
-import theme1 from '/junglecard.png'; // Import theme images as required
+import { useEffect, useState } from 'react';
+import theme1 from '/junglecard.png';
 import theme2 from '/mysticcard.png';
 import theme3 from '/aquacard.png';
+import theme4 from '/capyjungle.png';
+import theme5 from '/capymystic.png';
+import theme6 from '/capyaqua.png';
 import { Link, useSearchParams } from 'react-router-dom';
 import { createCard } from '../../node-api/server-api';
 import Navbar from '../components/Nav';
@@ -10,9 +12,12 @@ import Navbar from '../components/Nav';
 function Accessories() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedTheme, setSelectedTheme] = useState(null);
+  const [selectedName, setSelectedName] = useState('');
 
-  const handleImageClick = (imageSrc) => {
+  const handleImageClick = (imageSrc, name) => {
+    console.log(name);
     setSelectedImage(imageSrc);
+    setSelectedName(name);
   };
 
   const handleThemeSelect = (themeSrc) => {
@@ -61,7 +66,7 @@ function Accessories() {
     <div>
       <div
         className={`w-[${width}] h-[${height}] ml-[20px] mt-[0px]  flex flex-col items-center relative scale-[0.8] cursor-pointer `}
-        onClick={() => handleImageClick(src)}
+        onClick={() => handleImageClick(src, name)}
       >
         <img
           src={src}
@@ -133,6 +138,8 @@ function Accessories() {
   let NFTs = queryParams.get('nfts');
   NFTs = JSON.parse(NFTs);
 
+  useEffect(() => {}, [selectedName]);
+
   return (
     <div className='w-full h-screen bg-[url(war23.png)] bg-cover bg-no-repeat overflow-y-hidden'>
       <div className='acc-page bg-red-00 flex flex-col p-0 m-0 w-[100%]  h-[100vh] text-white '>
@@ -195,34 +202,67 @@ function Accessories() {
             <h2 className='text-xl font-bold mb-4'>Select Theme:</h2>
             <div className='theme-options flex flex-col items-center'>
               <img
-                src={theme1}
+                src={
+                  selectedName.toLowerCase().includes('capy') ? theme4 : theme1
+                }
                 alt='Theme 1'
                 className={`cursor-pointer mb-2 ${
-                  selectedTheme === theme1
+                  selectedTheme ===
+                  (selectedName.toLowerCase().includes('capy')
+                    ? theme4
+                    : theme1)
                     ? 'border-[8px] border-green-700'
                     : 'border-[8px] border-gray-300'
                 }`}
-                onClick={() => handleThemeSelect(theme1)}
+                onClick={() =>
+                  handleThemeSelect(
+                    selectedName.toLowerCase().includes('capy')
+                      ? theme4
+                      : theme1
+                  )
+                }
               />
               <img
-                src={theme2}
+                src={
+                  selectedName.toLowerCase().includes('capy') ? theme5 : theme2
+                }
                 alt='Theme 2'
                 className={`cursor-pointer mb-2 ${
-                  selectedTheme === theme2
+                  selectedTheme ===
+                  (selectedName.toLowerCase().includes('capy')
+                    ? theme5
+                    : theme2)
                     ? 'border-[8px] border-green-700'
                     : 'border-[8px]  border-gray-300'
                 }`}
-                onClick={() => handleThemeSelect(theme2)}
+                onClick={() =>
+                  handleThemeSelect(
+                    selectedName.toLowerCase().includes('capy')
+                      ? theme5
+                      : theme2
+                  )
+                }
               />
               <img
-                src={theme3}
+                src={
+                  selectedName.toLowerCase().includes('capy') ? theme6 : theme3
+                }
                 alt='Theme 3'
                 className={`cursor-pointer mb-2 ${
-                  selectedTheme === theme3
+                  selectedTheme ===
+                  (selectedName.toLowerCase().includes('capy')
+                    ? theme6
+                    : theme3)
                     ? 'border-[8px]  border-green-700'
                     : 'border-[8px]  border-gray-300'
                 }`}
-                onClick={() => handleThemeSelect(theme3)}
+                onClick={() =>
+                  handleThemeSelect(
+                    selectedName.toLowerCase().includes('capy')
+                      ? theme6
+                      : theme3
+                  )
+                }
               />
 
               <button
