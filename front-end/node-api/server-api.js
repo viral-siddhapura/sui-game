@@ -52,11 +52,11 @@ export const addCardToBattleDeck = async (card_id) => {
   return res;
 };
 
-export const fetchBattleDeck = async () => {
+export const fetchBattleDeck = async (user_id) => {
   const res = await axios.get(
     `${
       import.meta.env.VITE_APP_SERVER_URL
-    }/api/users/get/battle-deck?user_id=${localStorage.getItem('user_id')}`
+    }/api/users/get/battle-deck?user_id=${user_id || localStorage.getItem('user_id')}`
   );
   return res;
 };

@@ -102,7 +102,7 @@
 /*  battleground css  */
 
 .battleground {
-  background-image: url("../../public//bgmap4.png");
+  background-image: url("/war25.png");
   overflow-y: hidden;
   overflow-x: hidden;
   background-size: cover;

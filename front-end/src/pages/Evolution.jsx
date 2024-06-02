@@ -11,6 +11,7 @@ import {
   getCardCollection,
 } from '../../node-api/server-api';
 import Navbar from '../components/Nav';
+import { Link } from 'react-router-dom';
 
 const Evolution = () => {
   const levelUp = new Audio('/level-up.mp3');
@@ -131,20 +132,21 @@ const Evolution = () => {
 
   const handleAddToBattle = async () => {
     try {
-      const res = await addCardToBattleDeck(selectedCharacter._id);
+      const response = await addCardToBattleDeck(selectedCharacter._id);
       fightAudio.play();
+
+      const newBattleDeck = [...battleDeck];
+      const indexToReplace = newBattleDeck.findIndex((slot) => slot === null);
+      if (indexToReplace !== -1) {
+        newBattleDeck[indexToReplace] = selectedCharacter;
+      } else {
+        newBattleDeck[0] = selectedCharacter; // Replace the first one for simplicity
+      }
+      setBattleDeck(newBattleDeck);
     } catch (error) {
       alert(error);
       console.log(error);
     }
-    const newBattleDeck = [...battleDeck];
-    const indexToReplace = newBattleDeck.findIndex((slot) => slot === null);
-    if (indexToReplace !== -1) {
-      newBattleDeck[indexToReplace] = selectedCharacter;
-    } else {
-      newBattleDeck[0] = selectedCharacter; // Replace the first one for simplicity
-    }
-    setBattleDeck(newBattleDeck);
   };
 
   return (
@@ -159,14 +161,6 @@ const Evolution = () => {
         height: '100vh',
       }}
     >
-      {/* <div className="fixed w-full flex justify-between p-4 bg-gray-700 h-[60px] text-white z-10">
-        <div className="flex items-center">
-          <span className="">🍖 Food: {food}</span>
-        </div>
-        <div className='flex items-center'>
-          <span className=''>💰 Coins: 200</span>
-        </div>
-      </div> */}
       <Navbar />
       <div className='bg-blue-00 flex '>
         <div className='flex flex-row w-[100%] h-[91.13vh]'>
@@ -318,7 +312,7 @@ const Evolution = () => {
           }}
         >
           <div className='font-bold text-2xl leading-[60px] underline-offset- decoration-2 '>
-            <h2>Battle Deck💪</h2>
+            <h2 className='text-black'>Battle Deck🥷</h2>
           </div>
 
           <div className='flex flex-col p-[20px] no-scrollbar mt-1 overflow-auto bg-red-00'>
@@ -344,6 +338,11 @@ const Evolution = () => {
                 )}
               </div>
             ))}
+            <Link to={'/mappage'}>
+              <button className='bg-red-500 p-2 rounded-lg hover:bg-red-600 text-white'>
+                Find Opponents💪
+              </button>
+            </Link>
           </div>
         </div>
       </div>
