@@ -8,6 +8,9 @@ This is an engaging and interactive card battle game built on the MERN stack (Mo
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) 
 
+
+Visit the SuiFrenia here [![Live Demo](https://img.shields.io/badge/Live%20Demo-View%20Here-green)]([https://your-deployment-link.com](https://suifrenia.netlify.app/))
+
 ## Features
 
 - **Card Evolution**: Evolve your cards to become more powerful and unlock new abilities.
