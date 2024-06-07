@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./styles.css";
 import { fetchBattleDeck } from "../../node-api/server-api";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+
+
 function BattleGround() {
   const [selectedCardPlayer1, setSelectedCardPlayer1] = useState(null);
   const [selectedCardPlayer2, setSelectedCardPlayer2] = useState(null);
@@ -20,6 +21,7 @@ function BattleGround() {
   const roundWinAudio = new Audio("/win2.mp3");
   const winnerAudio = new Audio("/winner.mp3");
   const [queryParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isBattleStarted && selectedCardPlayer1 && selectedCardPlayer2) {
@@ -33,10 +35,10 @@ function BattleGround() {
   const getBattleDeck = async () => {
     const resp1 = await fetchBattleDeck();
     setBattleDeck1(resp1.data.battleDeck);
-    // console.log("battledeck",resp1.data.battleDeck)
     const resp2 = await fetchBattleDeck(queryParams.get("opponent"));
     setBattleDeck2(resp2.data.battleDeck);
   };
+
   useEffect(() => {
     getBattleDeck();
   }, []);
@@ -46,10 +48,8 @@ function BattleGround() {
       if (player === 1) {
         cardAudio.play();
         setSelectedCardPlayer1(card);
-        // console.log("selected card : " , card)
         const opponentCard =
           battleDeck2[Math.floor(Math.random() * battleDeck2.length)];
-        console.log("opp -> ", opponentCard);
         cardAudio.play();
         setSelectedCardPlayer2(opponentCard);
       }
@@ -57,24 +57,19 @@ function BattleGround() {
       toast.error("Start the battle first!");
     }
   };
-  // console.log("selectedcard1 : ", selectedCardPlayer1.title)
+
   const compareCards = () => {
-    // console.log("compare cards()");
     if (selectedCardPlayer1 && selectedCardPlayer2) {
-      console.log("Started comparing cards...");
-      console.log("title", title);
       const player1Value = selectedCardPlayer1[title.toLowerCase()];
       const player2Value = selectedCardPlayer2[title.toLowerCase()];
 
-      console.log("Player 1 Value:", player1Value);
-      console.log("Player 2 Value:", player2Value);
       if (player1Value > player2Value) {
         roundWinAudio.play();
-        setWinner(selectedCardPlayer1);
+        setWinner(1);
         setScorePlayer1(scorePlayer1 + 1);
         toast.success("You won the battle!");
       } else if (player1Value < player2Value) {
-        setWinner(selectedCardPlayer2);
+        setWinner(2);
         setScorePlayer2(scorePlayer2 + 1);
         toast.error("You lost the battle!");
       } else {
@@ -82,17 +77,34 @@ function BattleGround() {
         toast.success("The battle is a draw!");
       }
 
-      console.log("winner :", winner);
-      setBattlesCount(battlesCount + 1); 
-      endGame();
+      setBattlesCount(battlesCount + 1);
+      if (battlesCount + 1 === 3) {
+        setTimeout(determineFinalWinner, 500);
+      } else {
+        endGame();
+      }
     }
   };
 
   useEffect(() => {
     if (battlesCount === 3) {
-      endGame();
+      determineFinalWinner();
     }
   }, [battlesCount]);
+
+  const determineFinalWinner = () => {
+    if (scorePlayer1 > scorePlayer2) {
+      toast.success("🏆 You WON the battle 🏆");
+    } else if (scorePlayer1 < scorePlayer2) {
+      toast.error("💔 You LOST the batlle 💔");
+    } else {
+      toast("🏳️ The final battle is a draw! 🏳️");
+    }
+
+    setTimeout(() => {
+      navigate("/mappage");
+    }, 2000);
+  };
 
   const endGame = () => {
     setTitle("Rebattle");
@@ -104,7 +116,7 @@ function BattleGround() {
   };
 
   const startBattle = () => {
-    if (battlesCount < 3) { // Check if the number of battles is less than 3
+    if (battlesCount < 3) {
       setSelectedCardPlayer1(null);
       setSelectedCardPlayer2(null);
 
@@ -144,14 +156,14 @@ function BattleGround() {
 
   const Card2 = ({ card, isWinner }) => (
     <div
-      className={`mt-8 flex flex-col items-center relative cursor-pointer border-[10px] ${
+      className={`mt-8 flex flex-col items-center relative border-[10px] ${
         isWinner === 1
           ? "border-green-500"
           : isWinner === 2
           ? "border-red-500"
           : isWinner === "draw"
           ? "border-gray-500"
-          : ""
+          : "border-transparent"
       }`}
       style={{ width: "auto", height: "40%" }}
     >
@@ -173,7 +185,7 @@ function BattleGround() {
 
   return (
     <div className="battleground w-[100vw] h-[100vh]">
-      <Toaster />
+   
       <div className="w-[100vw] h-[100vh] flex justify-between">
         <div className="first_player w-[50%] h-[100vh] flex flex-row items-center justify-between">
           <div className="card-area w-[33%] h-[100vh] flex flex-col justify-evenly p-4 py-10 items-center">
@@ -199,7 +211,10 @@ function BattleGround() {
 
           <div className="playing_card w-[75%] h-[100vh] flex justify-center items-center">
             {selectedCardPlayer1 && (
-              <Card2 card={selectedCardPlayer1} isWinner={winner === 1} />
+              <Card2
+                card={selectedCardPlayer1}
+                isWinner={winner === 1 ? 1 : winner === "draw" ? "draw" : null}
+              />
             )}
           </div>
         </div>
@@ -209,12 +224,12 @@ function BattleGround() {
             {selectedCardPlayer2 && (
               <Card2
                 card={selectedCardPlayer2}
-                isWinner={winner === 2 || winner === "draw"}
+                isWinner={winner === 2 ? 2 : winner === "draw" ? "draw" : null}
               />
             )}
           </div>
 
-          <div className="card-area w-[33%] h-[100vh] bg-green-500 flex flex-col justify-evenly p-4 py-10  items-center">
+          <div className="card-area w-[33%] h-[100vh] flex flex-col justify-evenly p-4 py-10 items-center">
             <h3 className="text-[2vw] underline">Player 2</h3>
             {battleDeck2.map((card) => (
               <Card

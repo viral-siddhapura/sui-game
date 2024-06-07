@@ -8,11 +8,13 @@ import NFTs from './pages/NFTs';
 import BattleGround from './pages/BattleGround';
 import LandingPage from './pages/LandingPage';
 import MarketPlace from './pages/MarketPlace';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Toaster />
         <Routes>
           <Route path='/' element={<LandingPage />} />
           <Route path='/nfts' element={<NFTs />} />
