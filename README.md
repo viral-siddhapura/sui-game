@@ -19,3 +19,9 @@ Visit the SuiFrenia here
 - **Battle Map**: Navigate through a dynamic battle map to find and challenge opponents.
 - **Google Authentication**: Securely log in with your Google account.
 - **Real-time Updates**: Enjoy real-time updates and interactions during gameplay.
+
+
+## Executing project
+Clone the project using follow command:
+`[git clone ](https://github.com/RebelDotIO/suigame.git)`
+Execute follow command to run project: `npm run dev`

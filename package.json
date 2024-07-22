@@ -1,0 +1,13 @@
+{
+  "name": "sui-game",
+  "version": "1.0.0",
+  "description": "<img src=\"https://suifrens.com/images/header-mobile.svg\" alt=\"\" align=\"center\"/>",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd backend \"npm run dev --prefix server",
+    "client": "cd front-end\"npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC"
+}
