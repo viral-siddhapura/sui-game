@@ -23,24 +23,3 @@ exports.createCollection = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
-
-
-// // Function to update food value
-// const updateFoodValue = async () => {
-//     try {
-//         const collections = await Collection.find();
-//         collections.forEach(async (collection) => {
-//             collection.food += 100;
-//             await collection.save();
-//         });
-//         console.log('Food values updated successfully');
-//     } catch (err) {
-//         console.error('Error updating food values:', err);
-//     }
-// };
-
-// // Schedule the updateFoodValue function to run at midnight
-// cron.schedule('0 0 * * *', () => {
-//     console.log('Running the scheduled task to update food values at midnight');
-//     updateFoodValue();
-// });
