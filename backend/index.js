@@ -5,10 +5,13 @@ const userRoute = require('./routes/userRoute');
 const collectionRoutes = require('./routes/collectionRoutes');
 const cardRoutes = require('./routes/cardRoutes');
 const dotenv = require('dotenv');
-const cors = require('cors')
+const cors = require('cors');
+const { fetchUser } = require('./controllers/usercontroller');
 
 dotenv.config();
 connectDB();
+  
+fetchUser();
 
 const app = express();
 const PORT = process.env.PORT || 5000;

