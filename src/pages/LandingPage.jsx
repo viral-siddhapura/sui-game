@@ -1,11 +1,11 @@
 import React from "react";
-import land1 from "../../public/1.png";
-import land2 from "../../public/2.png";
-import land3 from "../../public/3.png";
-import land4 from "../../public/4.png";
-import land5 from "../../public/5.png";
-import land6 from "../../public/6.png";
-import land7 from "../../public/7.png";
+import land1 from "/1.png";
+import land2 from "/2.png";
+import land3 from "/3.png";
+import land4 from "/4.png";
+import land5 from "/5.png";
+import land6 from "/6.png";
+import land7 from "/7.png";
 import { FaHeart, FaYoutube } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
