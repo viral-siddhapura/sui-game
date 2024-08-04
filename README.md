@@ -22,5 +22,5 @@ We are currently seeking enhancements to the game, and we are looking for a deve
 
 
 Contact me here if you are available for this job:
-`Whatsapp: +380947128452`
+`Whatsapp: +17123141965`
 `Telegram: @GabrielC90`
