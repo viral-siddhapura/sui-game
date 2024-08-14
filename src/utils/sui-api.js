@@ -10,7 +10,7 @@ export const fetchNFTsFromWallet = async (wallet_addr) => {
       headers: { Accept: 'application/json', Authorization: '' },
     }
   );
-  console.log(resp.data);
+  // console.log(resp.data);
   return resp.data;
 };
 

@@ -32,7 +32,7 @@ const NFTs = () => {
         10
       );
 
-      console.log(response1.data, response2.data)
+      // console.log(response1.data, response2.data)
 
       if (response1.data.error) {
         setError(response1.data.error.message);
@@ -41,7 +41,7 @@ const NFTs = () => {
           setError(response2.data.error.message);
         } else {
           setData(response2.data.result);
-          console.log(data);
+          // console.log(data);
           SetNFTs([
             ...response1.data.result.data,
             ...response2.data.result.data,

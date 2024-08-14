@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const collectionController = require('../controllers/collectionController');
 
-router.get('/', collectionController.getCollections);
 router.post('/', collectionController.createCollection);
+router.get('/', collectionController.getCollections);
 
 module.exports = router;

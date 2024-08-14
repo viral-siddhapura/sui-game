@@ -10,17 +10,17 @@ import { jwtDecode } from 'jwt-decode';
 const Login = () => {
   const navigate = useNavigate();
   const [jwt, setJwt] = useState('');
-  const [userSalt, setUserSalt] = useState(localStorage.getItem('salt') || '');
   const [nonce, setNonce] = useState('');
+  const [userSalt, setUserSalt] = useState(localStorage.getItem('salt') || '');
 
   const responseMessage = async (response) => {
-    console.log('Google login response: ', response);
-    console.log('salt: ', userSalt);
+    // console.log('Google login response: ', response);
+    // console.log('salt: ', userSalt);
     localStorage.setItem('salt', userSalt);
     setJwt(response.credential);
     const decodedJwt = jwtDecode(response.credential);
     const suiAdd = await getSuiAddress(response.credential, userSalt, nonce);
-    console.log('sui Add : ', suiAdd);
+    // console.log('sui Add : ', suiAdd);
     try {
       const resp = await loginUser({
         email: decodedJwt.email,

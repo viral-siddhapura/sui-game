@@ -8,18 +8,18 @@ import { toast } from "react-hot-toast";
 function BattleGround() {
   const [selectedCardPlayer1, setSelectedCardPlayer1] = useState(null);
   const [selectedCardPlayer2, setSelectedCardPlayer2] = useState(null);
-  const [title, setTitle] = useState("Start Battle🔥");
   const [titleClass, setTitleClass] = useState("");
+  const [title, setTitle] = useState("Start Battle🔥");
   const [isBattleStarted, setIsBattleStarted] = useState(false);
+  const [scorePlayer2, setScorePlayer2] = useState(0);
   const [winner, setWinner] = useState(null);
   const [scorePlayer1, setScorePlayer1] = useState(0);
-  const [scorePlayer2, setScorePlayer2] = useState(0);
   const [battlesCount, setBattlesCount] = useState(0);
 
   const fight = new Audio("/fight.mp3");
-  const cardAudio = new Audio("/card.mp3");
-  const roundWinAudio = new Audio("/win2.mp3");
   const winnerAudio = new Audio("/winner.mp3");
+  const roundWinAudio = new Audio("/win2.mp3");
+  const cardAudio = new Audio("/card.mp3");
   const [queryParams] = useSearchParams();
   const navigate = useNavigate();
 

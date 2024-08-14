@@ -11,13 +11,13 @@ import Navbar from '../components/Nav';
 
 function Accessories() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedTheme, setSelectedTheme] = useState(null);
   const [selectedName, setSelectedName] = useState('');
+  const [selectedTheme, setSelectedTheme] = useState(null);
 
   const handleImageClick = (imageSrc, name) => {
-    console.log(name);
-    setSelectedImage(imageSrc);
     setSelectedName(name);
+    // console.log(name);
+    setSelectedImage(imageSrc);
   };
 
   const handleThemeSelect = (themeSrc) => {
@@ -27,7 +27,7 @@ function Accessories() {
   const applyTheme = async () => {
     if (selectedTheme) {
       setSelectedImage(selectedTheme);
-      console.log(selectedTheme);
+      // console.log(selectedTheme);
     }
     try {
       let theme = '';

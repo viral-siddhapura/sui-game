@@ -56,7 +56,7 @@ export const getSuiAddress = async (jwt, userSalt, nonce) => {
     keyClaimName: 'sub',
     nonce,
   });
-  console.log('zkp: ', zkp);
+  // console.log('zkp: ', zkp);
 
   // await assembleZkLoginSignature(jwt, zkLoginUserAddress, userSalt, zkp);
 
@@ -110,7 +110,7 @@ const assembleZkLoginSignature = async (
     userSignature,
   });
 
-  console.log('zkLogin sign : ', zkLoginSignature);
+  // console.log('zkLogin sign : ', zkLoginSignature);
 
   // Execute transaction
   const executed_transaction = suiClient.executeTransactionBlock({

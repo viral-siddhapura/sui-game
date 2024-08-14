@@ -11,6 +11,31 @@ exports.getCards = async (req, res) => {
   }
 };
 
+// Update an existing card
+exports.updateCard = async (req, res) => {
+  try {
+    const card = await Card.findById(req.params.id);
+
+    if (!card) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+
+    card.name = req.body.name || card.name;
+    card.power = req.body.power || card.power;
+    card.hp = req.body.hp || card.hp;
+    card.level = req.body.level || card.level;
+    card.speed = req.body.speed || card.speed;
+    card.stamina = req.body.stamina || card.stamina;
+    card.theme = req.body.theme || card.theme;
+
+    const updatedCard = await card.save();
+
+    res.status(200).json(updatedCard);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 // Create a new card
 exports.createCard = async (req, res) => {
   const { name, theme, user, cardImgUrl, baseImgUrl } = req.body;
@@ -50,31 +75,6 @@ exports.createCard = async (req, res) => {
     res.status(201).json(newCard);
   } catch (err) {
     res.status(400).json({ error: err.message });
-  }
-};
-
-// Update an existing card
-exports.updateCard = async (req, res) => {
-  try {
-    const card = await Card.findById(req.params.id);
-
-    if (!card) {
-      return res.status(404).json({ error: 'Card not found' });
-    }
-
-    card.name = req.body.name || card.name;
-    card.power = req.body.power || card.power;
-    card.hp = req.body.hp || card.hp;
-    card.level = req.body.level || card.level;
-    card.speed = req.body.speed || card.speed;
-    card.stamina = req.body.stamina || card.stamina;
-    card.theme = req.body.theme || card.theme;
-
-    const updatedCard = await card.save();
-
-    res.status(200).json(updatedCard);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
   }
 };
 
