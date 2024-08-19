@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "concurrently \"nodemon backend/index.js\" \"vite\"",
-    "build": "concurrently \"nodemon backebd/index.js\" \"vite build\""
+    "build": "concurrently \"nodemon backend/index.js\" \"vite build\""
   },
   "dependencies": {
     "@mysten/bcs": "^1.0.4",
