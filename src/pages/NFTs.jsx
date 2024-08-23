@@ -73,7 +73,7 @@ const NFTs = () => {
               return (
                 <div
                   key={item.data.objectId}
-                  className='border-4 rounded-2xl border-yellow-600 cursor-pointer bg-yellow-400 duration-300 transition-transform'
+                  className='border-4 rounded-2xl border-yellow-600 bg-yellow-400 duration-300 transition-transform'
                 >
                   <img
                     src={item.data.display.data.image_url}
